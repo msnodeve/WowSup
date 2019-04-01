@@ -4,6 +4,8 @@ import android.graphics.Point;
 import android.util.Log;
 import android.view.Display;
 
+import java.util.Date;
+
 public class GlobalWowSup {
     private static GlobalWowSup globalWowToken = new GlobalWowSup();
     private int userWidth;
@@ -12,6 +14,7 @@ public class GlobalWowSup {
     private String id;
     private String userEmail;
     private String imageURL;
+    private String userRegistryTime;
 
     private GlobalWowSup() {
         Log.d("WowSup_GlobalSingleton_INIT", "Start");
@@ -67,6 +70,14 @@ public class GlobalWowSup {
 
     public void setUserHeight(int userHeight) {
         this.userHeight = userHeight;
+    }
+
+    public String getUserRegistryTime() {
+        return userRegistryTime;
+    }
+
+    public void setUserRegistryTime(String userRegistryTime) {
+        this.userRegistryTime = userRegistryTime;
     }
 
     public void setScreenSize(Display display) {

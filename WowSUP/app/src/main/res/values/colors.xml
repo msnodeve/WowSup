@@ -12,5 +12,5 @@
     <color name="wowSupDark">#808183</color>
     <color name="wowSupTabSelect">#efbfa8</color>
     <color name="wowSupTabNonSelect">#e4f9f5</color>
-
+    <color name="wowSupBackground">#94b6bb</color>
 </resources>
