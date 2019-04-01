@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- App Basic Color -->
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <!-- Bottom Tab Color -->
+    <color name="iconText">#e4f9f5</color>
+    <color name="background">#11999e</color>
+    <!-- WowSup Basic Color -->
+    <color name="wowSupLight">#f0f4f3</color>
+    <color name="wowSupDark">#808183</color>
+    <color name="wowSupTabSelect">#efbfa8</color>
+    <color name="wowSupTabNonSelect">#e4f9f5</color>
+
 </resources>
