@@ -14,4 +14,6 @@ public interface LoginService {
     Call<ResponseLogin> doLogin(@Query("userID") String userID,
                                 @Query("userPW") String userPW);
 
+    @POST("Login/confirmID.php")
+    Call<ResponseLogin> confirmID(@Query("userID") String userID);
 }

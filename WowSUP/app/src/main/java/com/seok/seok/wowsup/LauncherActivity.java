@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.seok.seok.wowsup.login.LoginActivity;
+import com.seok.seok.wowsup.login.WelcomeActivity;
 import com.seok.seok.wowsup.utilities.GlobalWowSup;
 
 public class LauncherActivity extends AppCompatActivity {
@@ -23,7 +24,7 @@ public class LauncherActivity extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            startActivity(new Intent(LauncherActivity.this, LoginActivity.class));
+            startActivity(new Intent(LauncherActivity.this, WelcomeActivity.class));
             finish();
         }
     };

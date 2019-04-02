@@ -8,9 +8,9 @@
     <color name="iconText">#e4f9f5</color>
     <color name="background">#11999e</color>
     <!-- WowSup Basic Color -->
-    <color name="wowSupLight">#f0f4f3</color>
+    <color name="wowSupLight">#F0F4F3</color>
     <color name="wowSupDark">#808183</color>
     <color name="wowSupTabSelect">#efbfa8</color>
     <color name="wowSupTabNonSelect">#e4f9f5</color>
-    <color name="wowSupBackground">#94b6bb</color>
+    <color name="wowSupBackground">#94B6BB</color>
 </resources>

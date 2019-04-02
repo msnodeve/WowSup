@@ -8,6 +8,7 @@ public class ResponseLogin {
     private String userID;
     private String userEmail;
     private String userRegistryTime;
+    private String msg;
 
     public int getState() {
         return state;
@@ -39,5 +40,13 @@ public class ResponseLogin {
 
     public void setUserRegistryTime(String userRegistryTime) {
         this.userRegistryTime = userRegistryTime;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 }

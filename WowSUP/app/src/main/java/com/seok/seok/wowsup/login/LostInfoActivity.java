@@ -108,9 +108,9 @@ public class LostInfoActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     ResponseMail body = response.body();
                     if (body.getState() == 0) {
-                        Toast.makeText(LostInfoActivity.this, "Email Send!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LostInfoActivity.this, body.getMsg(), Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(LostInfoActivity.this, "Email not Send!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LostInfoActivity.this, body.getMsg(), Toast.LENGTH_SHORT).show();
                     }
                 }
             }

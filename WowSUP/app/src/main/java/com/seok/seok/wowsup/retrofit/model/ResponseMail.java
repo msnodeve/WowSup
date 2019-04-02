@@ -2,6 +2,7 @@ package com.seok.seok.wowsup.retrofit.model;
 
 public class ResponseMail {
     private int state;
+    private String msg;
 
     public int getState() {
         return state;
@@ -9,5 +10,13 @@ public class ResponseMail {
 
     public void setState(int state) {
         this.state = state;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 }
