@@ -92,9 +92,9 @@
                     <ImageView
                         android:id="@+id/lostinfo_ibtn_id"
                         android:layout_width="20dp"
-                        android:layout_height="17dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginRight="18dp"
-                        app:srcCompat="@drawable/tab_up_button" />
+                        app:srcCompat="@drawable/tab_down_button" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -184,7 +184,7 @@
                         android:layout_width="20dp"
                         android:layout_height="17dp"
                         android:layout_marginRight="18dp"
-                        app:srcCompat="@drawable/tab_up_button" />
+                        app:srcCompat="@drawable/tab_down_button" />
                 </LinearLayout>
 
             </LinearLayout>

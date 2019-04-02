@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
                     if(response.isSuccessful()){
                         Log.d("WowSup_Login_RESPONSE", "http response Success");
                         ResponseLogin body = response.body();
-                        if(body.getState()==1){
+                        if(body.getState()==0){
                             GlobalWowSup.getInstance().setId(body.getUserID());
                             GlobalWowSup.getInstance().setUserEmail(body.getUserEmail());
                             GlobalWowSup.getInstance().setUserRegistryTime(body.getUserRegistryTime());
