@@ -50,6 +50,9 @@ dependencies {
     // Material TextField, EditText
     implementation 'com.github.florent37:materialtextfield:1.0.7'
     implementation 'com.rengwuxian.materialedittext:library:2.1.4'
-    // ExpandableLayout
+    //RecyclerView, CardView
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.android.support:cardview-v7:28.0.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
 
 }

@@ -3,14 +3,16 @@ package com.seok.seok.wowsup;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.seok.seok.wowsup.fragments.fragchat.ChatFragment;
 import com.seok.seok.wowsup.fragments.fragglobal.GlobalFragment;
 import com.seok.seok.wowsup.fragments.fragprofile.ProfileFragment;
 import com.seok.seok.wowsup.fragments.fragstory.StoryFragment;
+import com.seok.seok.wowsup.utilities.Common;
 import com.seok.seok.wowsup.utilities.GlobalWowSup;
-import com.seok.seok.wowsup.utilities.MainTabPagerAdapter;
+import com.seok.seok.wowsup.adapter.MainTabPagerAdapter;
 
 import java.util.ArrayList;
 
@@ -55,10 +57,10 @@ public class MainActivity extends AppCompatActivity {
 
         final ArrayList<NavigationTabBar.Model> models = new ArrayList<>();
 
-        models.add(new NavigationTabBar.Model.Builder(getResources().getDrawable(R.drawable.me_non_click), getResources().getColor(R.color.wowSupDark)).title("ME").build());
-        models.add(new NavigationTabBar.Model.Builder(getResources().getDrawable(R.drawable.btn_talk1), getResources().getColor(R.color.wowSupDark)).title("CHAT").build());
-        models.add(new NavigationTabBar.Model.Builder(getResources().getDrawable(R.drawable.hashtags_non_click), getResources().getColor(R.color.wowSupDark)).title("TAGs").build());
-        models.add(new NavigationTabBar.Model.Builder(getResources().getDrawable(R.drawable.logo_sup_noclolor), getResources().getColor(R.color.wowSupDark)).title("GLOBAL").build());
+        models.add(new NavigationTabBar.Model.Builder(getResources().getDrawable(R.drawable.me_non_click), getResources().getColor(R.color.wowSupBasic0)).title("ME").build());
+        models.add(new NavigationTabBar.Model.Builder(getResources().getDrawable(R.drawable.btn_talk1), getResources().getColor(R.color.wowSupBasic1)).title("CHAT").build());
+        models.add(new NavigationTabBar.Model.Builder(getResources().getDrawable(R.drawable.hashtags_non_click), getResources().getColor(R.color.wowSupBasic2)).title("TAGs").build());
+        models.add(new NavigationTabBar.Model.Builder(getResources().getDrawable(R.drawable.logo_sup_noclolor), getResources().getColor(R.color.wowSupBasic6)).title("GLOBAL").build());
         navigationTabBar.setActiveColor(activeColor);
         navigationTabBar.setInactiveColor(inactiveColor);
         navigationTabBar.setModels(models);
@@ -69,29 +71,33 @@ public class MainActivity extends AppCompatActivity {
         navigationTabBar.setOnTabBarSelectedIndexListener(new NavigationTabBar.OnTabBarSelectedIndexListener() {
             @Override
             public void onStartTabSelected(final NavigationTabBar.Model model, final int index) {
-
+                Log.d("WowSup_Main_", "StartTabSelected(" + index + ")");
             }
 
             @Override
             public void onEndTabSelected(final NavigationTabBar.Model model, final int index) {
-
+                Log.d("WowSup_Main_", "onEndTabSelected(" + index + ")");
             }
         });
 
         navigationTabBar.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(final int position, final float positionOffset, final int positionOffsetPixels) {
-
+                Log.d("WowSup_Main_", "onPageScrolled(" + position + ", " + positionOffset + ", " + positionOffsetPixels+ ")");
+                //걍 노필요
             }
 
             @Override
             public void onPageSelected(final int position) {
-
+                Log.d("WowSup_Main_", "onPageSelected(" + position + ")");
+                //페이지 선택 0,1,2,3
             }
 
             @Override
             public void onPageScrollStateChanged(final int state) {
-
+                Log.d("WowSup_Main_", "onPageScrollStateChanged(" + state + ")");
+                //손으로 페이지 넘길때,  1(스크롤 시작) -> 2(손을 땠을 때) -> 0(정지 했을 때)
+                //버튼으로 페이지 넘길때, 2(시작) -> 0(정지)
             }
         });
         navigationTabBar.bringToFront();

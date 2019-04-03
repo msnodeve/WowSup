@@ -1,4 +1,4 @@
-package com.seok.seok.wowsup.utilities;
+package com.seok.seok.wowsup.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

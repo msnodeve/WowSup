@@ -13,4 +13,16 @@
     <color name="wowSupTabSelect">#efbfa8</color>
     <color name="wowSupTabNonSelect">#e4f9f5</color>
     <color name="wowSupBackground">#94B6BB</color>
+
+    <color name="wowSupBasic0">#c9dff1</color>
+    <color name="wowSupBasic1">#efe7cc</color>
+    <color name="wowSupBasic2">#ffffff</color>
+    <color name="wowSupBasic3">#808183</color>
+    <color name="wowSupBasic4">#efbfa8</color>
+    <color name="wowSupBasic5">#dad3ce</color>
+    <color name="wowSupBasic6">#64757a</color>
+    <color name="wowSupBasic7">#94b6bb</color>
+    <color name="wowSupBasic8">#b7bbbd</color>
+    <color name="wowSupBasic9">#f6e0d1</color>
+
 </resources>

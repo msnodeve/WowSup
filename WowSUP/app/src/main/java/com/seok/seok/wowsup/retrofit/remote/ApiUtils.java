@@ -11,4 +11,7 @@ public class ApiUtils {
     public static LoginService getUserService(){
         return RetrofitClient.getClient(BASE_URL).create(LoginService.class);
     }
+    public static ProfileService getProfileService(){
+        return RetrofitClient.getClient(BASE_URL).create(ProfileService.class);
+    }
 }
