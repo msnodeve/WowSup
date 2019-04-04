@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toast.makeText(this, GlobalWowSup.getInstance().getUserWidth() + "    " + GlobalWowSup.getInstance().getUserHeight(), Toast.LENGTH_SHORT).show();
         ButterKnife.bind(this);
         initUI();
     }

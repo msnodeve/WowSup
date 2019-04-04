@@ -49,6 +49,7 @@ public class ProfileFragment extends Fragment {
     Button btnNotice;
     @BindView(R.id.frag_pf_img_profile)
     ImageView imgProfile;
+
     public ProfileFragment() {
 
     }

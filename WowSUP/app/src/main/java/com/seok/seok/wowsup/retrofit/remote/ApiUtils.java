@@ -14,4 +14,7 @@ public class ApiUtils {
     public static ProfileService getProfileService(){
         return RetrofitClient.getClient(BASE_URL).create(ProfileService.class);
     }
+    public static WordChartService getChartService(){
+        return RetrofitClient.getClient(BASE_URL).create(WordChartService.class);
+    }
 }
