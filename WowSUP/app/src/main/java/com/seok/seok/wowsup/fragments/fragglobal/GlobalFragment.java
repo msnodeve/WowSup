@@ -10,12 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.seok.seok.wowsup.R;
+import com.seok.seok.wowsup.dialog.DeveloperDialog;
 import com.seok.seok.wowsup.retrofit.model.ResponseWordChart;
 import com.seok.seok.wowsup.retrofit.remote.ApiUtils;
 import com.seok.seok.wowsup.utilities.Common;
@@ -32,10 +32,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class GlobalFragment extends Fragment {
-    private List<Entry> words;
+    private List<PieEntry> words;
     private List<String> wordList;
     private List<Integer> colors;
-
+    private         View view;
     @BindView(R.id.frag_gb_chart)
     PieChart pieChart;
 
@@ -53,15 +53,24 @@ public class GlobalFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_global, container, false);
+        view = inflater.inflate(R.layout.fragment_global, container, false);
         ButterKnife.bind(this, view);
         init();
         return view;
     }
-    @OnClick(R.id.frag_gb_btn_more) void goMore(){
 
+    @OnClick(R.id.frag_gb_btn_more)
+    void goMore() {
+        DeveloperDialog dialog = new DeveloperDialog(view.getContext());
+        dialog.show();
+//        SweetAlertDialog pDialog = new SweetAlertDialog(view.getContext(), SweetAlertDialog.PROGRESS_TYPE);
+//        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+//        pDialog.setTitleText("Loading");
+//        pDialog.setCancelable(true);
+//        pDialog.show();
     }
-    public void init(){
+
+    public void init() {
         words = new ArrayList<>();
         wordList = new ArrayList<>();
         colors = new ArrayList<>();
@@ -72,45 +81,44 @@ public class GlobalFragment extends Fragment {
             @Override
             public void onResponse(Call<List<ResponseWordChart>> call, Response<List<ResponseWordChart>> response) {
                 Log.d("WowSup_global_HTTP", "http trans Success");
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     List<ResponseWordChart> body = response.body();
                     for (int i = 0; i < body.size(); i++) {
-                        words.add(new Entry(body.get(i).getWordCount(), i));
-                        wordList.add(body.get(i).getWord());
+                        words.add(new PieEntry(body.get(i).getWordCount(), body.get(i).getWord()));
+                        colors.add(Common.WOWSUP_COLOR[i]);
                     }
-                    PieDataSet dataSet = new PieDataSet((List)words, "");
+                    PieDataSet dataSet = new PieDataSet(words, "");
+                    PieData data = new PieData(dataSet);
+
+                    pieChart.setData(data);
+                    pieChart.invalidate();
+                    pieChart.getLegend().setEnabled(false);
                     //그래프 크기 조절
-                    dataSet.setSliceSpace(3f);
+                    dataSet.setSliceSpace(5f);
                     dataSet.setSelectionShift(10f);
-
-                    //PieData data = new PieData(wordList, dataSet);
-//                    pieChart.setData(data);
-//                    pieChart.invalidate();
-//                    pieChart.getLegend ().setEnabled ( false );
-//
-//                    //글짜 크기 하고 색
-//                    data.setValueFormatter(new MyValueFormatter());
-//                    data.setValueTextSize(15f);
-//                    data.setValueTextColor(Color.rgb(65,170,112));
-
-                    for (int color : Common.WOWSUP_COLOR)
-                        colors.add(color);
                     dataSet.setColors(colors);
+                    data.setValueFormatter(new MyValueFormatter());
+                    data.setValueTextSize(8f);
+                    data.setValueTextColor(Color.rgb(0, 0, 0));
                 }
                 pieChart.animateXY(1500, 1500);
             }
+
             @Override
             public void onFailure(Call<List<ResponseWordChart>> call, Throwable t) {
                 Log.d("WowSup_global_HTTP", "http trans Failed");
             }
         });
     }
+
     public class MyValueFormatter extends ValueFormatter {
         private DecimalFormat mFormat;
+
         public MyValueFormatter() {
             // use one decimal if needed
             mFormat = new DecimalFormat("###,###,##0");
         }
+
         @Override
         public String getFormattedValue(float value) {
             // e.g. append a dollar-sign
