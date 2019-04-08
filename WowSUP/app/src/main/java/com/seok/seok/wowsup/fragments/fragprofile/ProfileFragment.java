@@ -1,5 +1,6 @@
 package com.seok.seok.wowsup.fragments.fragprofile;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.seok.seok.wowsup.R;
+import com.seok.seok.wowsup.StoryWriteActivity;
 import com.seok.seok.wowsup.retrofit.model.ResponseProfile;
 import com.seok.seok.wowsup.retrofit.remote.ApiUtils;
 import com.seok.seok.wowsup.utilities.CardData;
@@ -78,7 +80,7 @@ public class ProfileFragment extends Fragment {
 
     @OnClick(R.id.frag_pf_ibtn_write)
     void writeStory() {
-
+        startActivity(new Intent(this.getContext(), StoryWriteActivity.class));
     }
 
     @OnClick(R.id.frag_pf_ibtn_notice)
