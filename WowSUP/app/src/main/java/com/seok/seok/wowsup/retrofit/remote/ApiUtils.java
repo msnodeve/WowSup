@@ -17,4 +17,7 @@ public class ApiUtils {
     public static WordChartService getChartService(){
         return RetrofitClient.getClient(BASE_URL).create(WordChartService.class);
     }
+    public static StoryService getStoryService() {
+        return RetrofitClient.getClient(BASE_URL).create(StoryService.class);
+    }
 }

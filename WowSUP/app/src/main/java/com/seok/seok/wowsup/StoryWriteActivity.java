@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -17,8 +18,14 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.ViewTarget;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
+import com.seok.seok.wowsup.dialog.WriteConfirmDialog;
+import com.seok.seok.wowsup.utilities.Common;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,7 +40,7 @@ import static com.seok.seok.wowsup.utilities.Common.FROM_CAMERA;
 import static com.seok.seok.wowsup.utilities.Common.imgStoryURL;
 
 public class StoryWriteActivity extends AppCompatActivity {
-    private Uri imgUri;
+
     private String mCurrentPhotoPath;
 
     @BindView(R.id.write_edt_tag1)
@@ -108,7 +115,10 @@ public class StoryWriteActivity extends AppCompatActivity {
 
     @OnClick(R.id.write_btn_save)
     void save() {
-
+        WriteConfirmDialog dialog = new WriteConfirmDialog(this);
+        dialog.setTxtQnA(getString(R.string.upload_story));
+        dialog.setData(edtTitle.getText().toString(), edtBody.getText().toString(), imgStoryURL, edtTag1.getText().toString(), edtTag2.getText().toString(), edtTag3.getText().toString(), edtTag4.getText().toString(), edtTag5.getText().toString());
+        dialog.show();
     }
 
     //카메라 권한 확인
@@ -138,6 +148,7 @@ public class StoryWriteActivity extends AppCompatActivity {
             }
         }
     }
+
     // 사용자 이미지 업로드
     private void makeDialog() {
         AlertDialog.Builder altBld = new AlertDialog.Builder(StoryWriteActivity.this);
@@ -165,53 +176,105 @@ public class StoryWriteActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode != RESULT_OK) {
+            return;
+        }
+        switch (requestCode) {
+            case FROM_ALBUM: {
+                //앨범에서 가져오기
+                try {
+                    imgStoryURL = getRealPathFromURI(data.getData());
+                    if (Common.fileUpload(new File(imgStoryURL))) {
+                        Glide.with(this)
+                                .load(data.getData())
+                                .into(new ViewTarget<LinearLayout, GlideDrawable>(layoutBack) {
+                                    @Override
+                                    public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
+                                        layoutBack.setBackground(resource);
+                                    }
+                                });
+                    } else {
+                        Toast.makeText(this, "The image size is large. Please choose a smaller size.", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        startActivityForResult(intent, FROM_ALBUM);
+                    }
+                } catch (Exception e) {
+                    Log.d("WowSup_StoryWrite", e.getMessage());
+                }
+                break;
+            }
+            case FROM_CAMERA: {
+                //촬영
+
+                break;
+            }
+        }
+    }
+
+    //안드로이드 갤러리 파일 경로 받아오기
+    private String getRealPathFromURI(Uri contentURI) {
+        String result;
+        Cursor cursor = getContentResolver().query(contentURI, null, null, null, null);
+        if (cursor == null) { // Source is Dropbox or other similar local file path
+            result = contentURI.getPath();
+        } else {
+            cursor.moveToFirst();
+            int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+            result = cursor.getString(idx);
+            cursor.close();
+        }
+        return result;
+    }
+
+    public File createImageFile() throws IOException {
+        String imgFileName = System.currentTimeMillis() + ".jpg";
+        File imageFile = null;
+        File storageDir = new File(Environment.getExternalStorageDirectory() + "/Pictures", "ireh");
+        if (!storageDir.exists()) {
+            Log.v("알림", "storageDir 존재 x " + storageDir.toString());
+            storageDir.mkdirs();
+        }
+        Log.v("알림", "storageDir 존재함 " + storageDir.toString());
+        imageFile = new File(storageDir, imgFileName);
+        mCurrentPhotoPath = imageFile.getAbsolutePath();
+        return imageFile;
+    }
+
     //앨범 선택 클릭
-    public void selectAlbum(){
+    public void selectAlbum() {
         //앨범 열기
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
-        intent.setType("image/*");
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, FROM_ALBUM);
     }
 
     //사진 찍기 클릭
-    public void takePhoto(){
+    public void takePhoto() {
         // 촬영 후 이미지 가져옴
         String state = Environment.getExternalStorageState();
-        if(Environment.MEDIA_MOUNTED.equals(state)){
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            if(intent.resolveActivity(getPackageManager())!=null){
+            if (intent.resolveActivity(getPackageManager()) != null) {
                 File photoFile = null;
-                try{
+                try {
                     photoFile = createImageFile();
-                }catch (IOException e){
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
-                if(photoFile!=null){
-                    Uri providerURI = FileProvider.getUriForFile(this,getPackageName(), photoFile);
-                    imgUri = providerURI;
+                if (photoFile != null) {
+                    Uri providerURI = FileProvider.getUriForFile(this, getPackageName(), photoFile);
+                    Uri imgUri = providerURI;
                     intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, providerURI);
                     startActivityForResult(intent, FROM_CAMERA);
                 }
             }
-        }else{
+        } else {
             Log.v("알림", "저장공간에 접근 불가능");
             return;
         }
     }
 
-    public File createImageFile() throws IOException{
-        String imgFileName = System.currentTimeMillis() + ".jpg";
-        File imageFile= null;
-        File storageDir = new File(Environment.getExternalStorageDirectory() + "/Pictures", "ireh");
-        if(!storageDir.exists()){
-            Log.v("알림","storageDir 존재 x " + storageDir.toString());
-            storageDir.mkdirs();
-        }
-        Log.v("알림","storageDir 존재함 " + storageDir.toString());
-        imageFile = new File(storageDir,imgFileName);
-        mCurrentPhotoPath = imageFile.getAbsolutePath();
-        Log.d("asdfasdf",mCurrentPhotoPath);
-        return imageFile;
-    }
+
 }

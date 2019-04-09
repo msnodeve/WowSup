@@ -1,7 +1,12 @@
 package com.seok.seok.wowsup.utilities;
 
+import android.database.Cursor;
 import android.graphics.Color;
+import android.net.Uri;
+import android.provider.MediaStore;
+import android.widget.Toast;
 
+import java.io.File;
 import java.util.Random;
 
 public class Common {
@@ -14,8 +19,8 @@ public class Common {
     public static String imgStoryURL = "basic_image_1_st.png";
 
     // Camera 관련
-    public static final int FROM_ALBUM = 0x01;
-    public static final int FROM_CAMERA = 0x01;
+    public static final int FROM_ALBUM = 1;
+    public static final int FROM_CAMERA = 2;
 
     public static final int[] WOWSUP_COLOR = {
             Color.rgb(201, 223, 241),
@@ -34,5 +39,13 @@ public class Common {
         Random rand = new Random();
         randNum = rand.nextInt(999999 - 100000 + 1) + 100000;
         return randNum;
+    }
+
+    public static boolean fileUpload(File file) {
+        if (!file.exists())
+            return false;
+        if (file.length() > 2097152)
+            return false;
+        return true;
     }
 }
