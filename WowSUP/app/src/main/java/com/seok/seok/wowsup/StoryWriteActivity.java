@@ -25,7 +25,6 @@ import com.bumptech.glide.request.target.ViewTarget;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 import com.seok.seok.wowsup.dialog.WriteConfirmDialog;
-import com.seok.seok.wowsup.utilities.Common;
 
 import java.io.File;
 import java.io.IOException;
@@ -37,7 +36,9 @@ import butterknife.OnClick;
 
 import static com.seok.seok.wowsup.utilities.Common.FROM_ALBUM;
 import static com.seok.seok.wowsup.utilities.Common.FROM_CAMERA;
+import static com.seok.seok.wowsup.utilities.Common.fileUpload;
 import static com.seok.seok.wowsup.utilities.Common.imgStoryURL;
+import static com.seok.seok.wowsup.utilities.Common.uploadConfirm;
 
 public class StoryWriteActivity extends AppCompatActivity {
 
@@ -110,7 +111,12 @@ public class StoryWriteActivity extends AppCompatActivity {
 
     @OnClick(R.id.write_ibtn_back5)
     void setBackground5() {
-        layoutBack.setBackgroundResource(R.drawable.basic_image_5_th);
+        Glide.with(this).load(R.drawable.basic_image_5_th).fitCenter().centerCrop().into(new ViewTarget<LinearLayout, GlideDrawable>(layoutBack) {
+            @Override
+            public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
+                layoutBack.setBackground(resource);
+            }
+        });
         imgStoryURL = "basic_image_5_th.png";
         imgFlag = false;
     }
@@ -122,11 +128,13 @@ public class StoryWriteActivity extends AppCompatActivity {
 
     @OnClick(R.id.write_btn_save)
     void save() {
-        WriteConfirmDialog dialog = new WriteConfirmDialog(this);
-        dialog.setTxtQnA(getString(R.string.upload_story));
-        dialog.setData(edtTitle.getText().toString(), edtBody.getText().toString(), imgStoryURL, edtTag1.getText().toString(), edtTag2.getText().toString(), edtTag3.getText().toString(), edtTag4.getText().toString(), edtTag5.getText().toString());
-        dialog.setImgFlag(imgFlag);
-        dialog.show();
+        if (uploadConfirm(this, edtTitle.getText().toString(), edtBody.getText().toString())) {
+            WriteConfirmDialog dialog = new WriteConfirmDialog(this);
+            dialog.setTxtQnA(getString(R.string.upload_story));
+            dialog.setData(edtTitle.getText().toString(), edtBody.getText().toString(), imgStoryURL, edtTag1.getText().toString(), edtTag2.getText().toString(), edtTag3.getText().toString(), edtTag4.getText().toString(), edtTag5.getText().toString());
+            dialog.setImgFlag(imgFlag);
+            dialog.show();
+        }
     }
 
     //카메라 권한 확인
@@ -161,13 +169,7 @@ public class StoryWriteActivity extends AppCompatActivity {
     private void makeDialog() {
         AlertDialog.Builder altBld = new AlertDialog.Builder(StoryWriteActivity.this);
         altBld.setTitle("Upload photos").setIcon(R.drawable.camera_icon).setCancelable(
-                false).setPositiveButton("Photo shoot",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        Log.d("WowSup_StoryWrite", "dialog > take picture");
-                        //takePhoto();
-                    }
-                }).setNeutralButton("Select album",
+                false).setNeutralButton("Select album",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogInterface, int id) {
                         Log.d("WowSup_StoryWrite", "dialog > get picture");
@@ -180,6 +182,13 @@ public class StoryWriteActivity extends AppCompatActivity {
                         dialog.cancel();
                     }
                 });
+//        .setPositiveButton("Photo shoot",
+//                new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int id) {
+//                        Log.d("WowSup_StoryWrite", "dialog > take picture");
+//                        //takePhoto();
+//                    }
+//                })
         AlertDialog alertDialog = altBld.create();
         alertDialog.show();
     }
@@ -196,15 +205,13 @@ public class StoryWriteActivity extends AppCompatActivity {
                 try {
                     imgFlag = true;
                     imgStoryURL = getRealPathFromURI(data.getData());
-                    if (Common.fileUpload(new File(imgStoryURL))) {
-                        Glide.with(this)
-                                .load(data.getData())
-                                .into(new ViewTarget<LinearLayout, GlideDrawable>(layoutBack) {
-                                    @Override
-                                    public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
-                                        layoutBack.setBackground(resource);
-                                    }
-                                });
+                    if (fileUpload(new File(imgStoryURL))) {
+                        Glide.with(this).load(data.getData()).fitCenter().centerCrop().into(new ViewTarget<LinearLayout, GlideDrawable>(layoutBack) {
+                            @Override
+                            public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
+                                layoutBack.setBackground(resource);
+                            }
+                        });
                     } else {
                         Toast.makeText(this, "The image size is large. Please choose a smaller size.", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);

@@ -1,5 +1,6 @@
 package com.seok.seok.wowsup.utilities;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
@@ -44,11 +45,33 @@ public class Common {
         return randNum;
     }
 
+    //파일 사이즈 2MB이상 업로드 중지
     public static boolean fileUpload(File file) {
         if (!file.exists())
             return false;
         if (file.length() > 2097152)
             return false;
         return true;
+    }
+
+    public static boolean uploadConfirm(Context context, String title, String body){
+        if(title.isEmpty() || title.length() == 0){
+            Toast.makeText(context, "The title field is empty.", Toast.LENGTH_SHORT).show();
+            return false;
+        }else if (body.isEmpty() || body.length() == 0) {
+            Toast.makeText(context, "The contents field is empty.", Toast.LENGTH_SHORT).show();
+            return false;
+        }else{
+            if(title.matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")){
+                Toast.makeText(context, "The title contains non-English words.", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+            if (body.matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")) {
+                Toast.makeText(context, "The contents contains non-English words.", Toast.LENGTH_SHORT).show();
+                return false;
+            }else{
+                return true;
+            }
+        }
     }
 }
