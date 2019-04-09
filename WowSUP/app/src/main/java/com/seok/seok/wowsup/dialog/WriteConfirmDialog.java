@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.seok.seok.wowsup.R;
 import com.seok.seok.wowsup.retrofit.model.ResponseStory;
 import com.seok.seok.wowsup.retrofit.remote.ApiUtils;
+import com.seok.seok.wowsup.utilities.Common;
 import com.seok.seok.wowsup.utilities.GlobalWowSup;
 
 import java.io.File;
@@ -35,7 +36,7 @@ public class WriteConfirmDialog extends Dialog {
     private Context context;
     private Callback retrofitCallBack;
     private String strQnA, title, body, image, tag1, tag2, tag3, tag4, tag5;
-
+    private boolean imgFlag;
     public WriteConfirmDialog(Context context) {
         super(context);
         this.context = context;
@@ -87,13 +88,17 @@ public class WriteConfirmDialog extends Dialog {
 
     protected void uploadFile() {
         try {
-            File file = new File(image);
-            RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
-            MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("file", GlobalWowSup.getInstance().getId() + "_" + file.getName(), requestBody);
-            RequestBody filename = RequestBody.create(MediaType.parse("text/plain"), file.getName());
-            ApiUtils.getStoryService().uploadImageStory(GlobalWowSup.getInstance().getId(), title, body, tag1, tag2, tag3, tag4, tag5, fileToUpload, filename).enqueue(retrofitCallBack);
+            if(imgFlag) {
+                File file = new File(image);
+                RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
+                MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("file", GlobalWowSup.getInstance().getId() + "_" + file.getName(), requestBody);
+                RequestBody filename = RequestBody.create(MediaType.parse("text/plain"), file.getName());
+                ApiUtils.getStoryService().uploadImageStory(GlobalWowSup.getInstance().getId(), title, body, tag1, tag2, tag3, tag4, tag5, fileToUpload, filename).enqueue(retrofitCallBack);
+            }else{
+                ApiUtils.getStoryService().uploadStory(GlobalWowSup.getInstance().getId(), title, body, Common.STORY_IMAGE_BACK_BASE_URL + image, tag1, tag2, tag3, tag4, tag5).enqueue(retrofitCallBack);
+            }
         } catch (Exception e) {
-            ApiUtils.getStoryService().uploadStory(GlobalWowSup.getInstance().getId(), title, body, image, tag1, tag2, tag3, tag4, tag5).enqueue(retrofitCallBack);
+            Log.d("WowSup_WriteDialog_Upload", "Upload Failed");
         }
     }
 
@@ -107,7 +112,9 @@ public class WriteConfirmDialog extends Dialog {
         this.tag4 = tag4;
         this.tag5 = tag5;
     }
-
+    public void setImgFlag(boolean imgFlag){
+        this.imgFlag = imgFlag;
+    }
     public void setTxtQnA(String strQnA) {
         this.strQnA = strQnA;
     }

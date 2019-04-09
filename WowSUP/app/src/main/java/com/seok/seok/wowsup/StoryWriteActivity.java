@@ -41,8 +41,6 @@ import static com.seok.seok.wowsup.utilities.Common.imgStoryURL;
 
 public class StoryWriteActivity extends AppCompatActivity {
 
-    private String mCurrentPhotoPath;
-
     @BindView(R.id.write_edt_tag1)
     EditText edtTag1;
     @BindView(R.id.write_edt_tag2)
@@ -59,6 +57,10 @@ public class StoryWriteActivity extends AppCompatActivity {
     EditText edtBody;
     @BindView(R.id.write_layout_back)
     LinearLayout layoutBack;
+
+    private String mCurrentPhotoPath;
+    private boolean imgFlag;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,30 +84,35 @@ public class StoryWriteActivity extends AppCompatActivity {
     void setBackground1() {
         layoutBack.setBackgroundResource(R.drawable.basic_image_1_st);
         imgStoryURL = "basic_image_1_st.png";
+        imgFlag = false;
     }
 
     @OnClick(R.id.write_ibtn_back2)
     void setBackground2() {
         layoutBack.setBackgroundResource(R.drawable.basic_image_2_nd);
         imgStoryURL = "basic_image_2_nd.png";
+        imgFlag = false;
     }
 
     @OnClick(R.id.write_ibtn_back3)
     void setBackground3() {
         layoutBack.setBackgroundResource(R.drawable.basic_image_3_rd);
         imgStoryURL = "basic_image_3_rd.png";
+        imgFlag = false;
     }
 
     @OnClick(R.id.write_ibtn_back4)
     void setBackground4() {
         layoutBack.setBackgroundResource(R.drawable.basic_image_4_th);
         imgStoryURL = "basic_image_4_th.png";
+        imgFlag = false;
     }
 
     @OnClick(R.id.write_ibtn_back5)
     void setBackground5() {
         layoutBack.setBackgroundResource(R.drawable.basic_image_5_th);
         imgStoryURL = "basic_image_5_th.png";
+        imgFlag = false;
     }
 
     @OnClick(R.id.write_ibtn_picture)
@@ -118,6 +125,7 @@ public class StoryWriteActivity extends AppCompatActivity {
         WriteConfirmDialog dialog = new WriteConfirmDialog(this);
         dialog.setTxtQnA(getString(R.string.upload_story));
         dialog.setData(edtTitle.getText().toString(), edtBody.getText().toString(), imgStoryURL, edtTag1.getText().toString(), edtTag2.getText().toString(), edtTag3.getText().toString(), edtTag4.getText().toString(), edtTag5.getText().toString());
+        dialog.setImgFlag(imgFlag);
         dialog.show();
     }
 
@@ -186,6 +194,7 @@ public class StoryWriteActivity extends AppCompatActivity {
             case FROM_ALBUM: {
                 //앨범에서 가져오기
                 try {
+                    imgFlag = true;
                     imgStoryURL = getRealPathFromURI(data.getData());
                     if (Common.fileUpload(new File(imgStoryURL))) {
                         Glide.with(this)

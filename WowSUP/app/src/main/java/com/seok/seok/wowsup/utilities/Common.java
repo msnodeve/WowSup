@@ -10,6 +10,9 @@ import java.io.File;
 import java.util.Random;
 
 public class Common {
+    //서버 기본 주소
+    public static final String STORY_IMAGE_BACK_BASE_URL = "http://www.heywowsup.com/wowsup/Image/Background/";
+
     // Email 관련
     public static int randNum;
     public static boolean confirmEmail = false;

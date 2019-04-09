@@ -17,7 +17,7 @@ import retrofit2.http.Query;
 public interface StoryService {
     //서버 요청 URL
 
-    @POST("Profile/writeStory.php")
+    @POST("Story/uploadStory.php")
     Call<ResponseStory> uploadStory(@Query("userID") String id,
                                     @Query("title") String title,
                                     @Query("body") String body,
@@ -29,7 +29,7 @@ public interface StoryService {
                                     @Query("tag5") String tag5);
 
     @Multipart
-    @POST("Story/uploadStory.php")
+    @POST("Story/uploadImageStory.php")
     Call<ResponseStory> uploadImageStory(@Query("userID") String id,
                                          @Query("title") String title,
                                          @Query("body") String body,
