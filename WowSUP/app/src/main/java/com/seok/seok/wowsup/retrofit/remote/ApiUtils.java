@@ -20,4 +20,7 @@ public class ApiUtils {
     public static StoryService getStoryService() {
         return RetrofitClient.getClient(BASE_URL).create(StoryService.class);
     }
+    public static StoreService getStoreService() {
+        return RetrofitClient.getClient(BASE_URL).create(StoreService.class);
+    }
 }

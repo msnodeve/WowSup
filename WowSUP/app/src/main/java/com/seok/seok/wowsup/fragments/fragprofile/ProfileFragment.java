@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.seok.seok.wowsup.R;
+import com.seok.seok.wowsup.StoreActivity;
 import com.seok.seok.wowsup.StoryWriteActivity;
 import com.seok.seok.wowsup.retrofit.model.ResponseProfile;
 import com.seok.seok.wowsup.retrofit.remote.ApiUtils;
@@ -95,7 +96,7 @@ public class ProfileFragment extends Fragment {
 
     @OnClick(R.id.frag_pf_lay_store)
     void goStore() {
-
+        startActivity(new Intent(this.getContext(), StoreActivity.class));
     }
 
     protected void init() {
