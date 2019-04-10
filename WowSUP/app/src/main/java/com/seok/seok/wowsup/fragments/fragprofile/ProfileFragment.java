@@ -20,6 +20,7 @@ import com.bumptech.glide.Glide;
 import com.seok.seok.wowsup.R;
 import com.seok.seok.wowsup.StoreActivity;
 import com.seok.seok.wowsup.StoryWriteActivity;
+import com.seok.seok.wowsup.SupPeopleInformationActivity;
 import com.seok.seok.wowsup.retrofit.model.ResponseProfile;
 import com.seok.seok.wowsup.retrofit.remote.ApiUtils;
 import com.seok.seok.wowsup.utilities.CardData;
@@ -91,7 +92,7 @@ public class ProfileFragment extends Fragment {
 
     @OnClick(R.id.frag_pf_img_profile)
     void updateProfile() {
-
+        startActivity(new Intent(this.getContext(), SupPeopleInformationActivity.class));
     }
 
     @OnClick(R.id.frag_pf_lay_store)

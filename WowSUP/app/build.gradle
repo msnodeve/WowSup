@@ -52,6 +52,7 @@ dependencies {
     // Material TextField, EditText
     implementation 'com.github.florent37:materialtextfield:1.0.7'
     implementation 'com.rengwuxian.materialedittext:library:2.1.4'
+    implementation 'com.github.rey5137:material:1.2.5'
     //RecyclerView, CardView
     implementation 'com.android.support:recyclerview-v7:28.0.0'
     implementation 'com.android.support:cardview-v7:28.0.0'
@@ -62,4 +63,5 @@ dependencies {
     implementation 'com.github.thomper:sweet-alert-dialog:v1.4.0'
     // Ted Permission
     implementation 'gun0912.ted:tedpermission:2.2.2'
+
 }
