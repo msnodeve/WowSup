@@ -5,9 +5,9 @@
 
     <uses-permission android:name="android.permission.INTERNET" /> <!-- 인터넷 사용 권한 -->
     <uses-permission android:name="com.android.vending.BILLING" /> <!-- 구글 인앱 구매 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />  <!-- 카메라 권한 -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />  <!-- 카메라 권한 -->
-    <uses-permission android:name="android.permission.CAMERA"/>  <!-- 카메라 권한 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 카메라 권한 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 카메라 권한 -->
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -17,8 +17,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-        <activity android:name=".StoryWriteActivity"
-            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".StoreActivity"></activity>
+        <activity
+            android:name=".StoryWriteActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".WebViewActivity" />
         <activity android:name=".login.RegisterActivity" />
         <activity android:name=".login.WelcomeActivity" />
