@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import com.seok.seok.wowsup.login.LoginActivity;
 import com.seok.seok.wowsup.login.WelcomeActivity;
+import com.seok.seok.wowsup.utilities.Common;
 import com.seok.seok.wowsup.utilities.GlobalWowSup;
 
 public class LauncherActivity extends AppCompatActivity {
@@ -18,6 +19,7 @@ public class LauncherActivity extends AppCompatActivity {
         setContentView(R.layout.activity_launcher);
         GlobalWowSup.getInstance().setScreenSize(getWindowManager().getDefaultDisplay());
         mHandler.sendEmptyMessageDelayed(0, 100);
+        Common.setCountry();
     }
     // App Logo 시각화 1.5초 뒤 LoginActivity 전환
     private Handler mHandler = new Handler() {

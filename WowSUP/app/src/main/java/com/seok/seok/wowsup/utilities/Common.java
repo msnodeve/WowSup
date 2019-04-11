@@ -7,7 +7,10 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.widget.Toast;
 
+import com.seok.seok.wowsup.R;
+
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Common {
@@ -26,6 +29,10 @@ public class Common {
     public static final int FROM_ALBUM = 1;
     public static final int FROM_CAMERA = 2;
 
+    //Country 관련
+    public static ArrayList<Country> countryArrayList;
+
+    //Wowsup Color
     public static final int[] WOWSUP_COLOR = {
             Color.rgb(201, 223, 241),
             Color.rgb(239, 231, 204),
@@ -39,6 +46,19 @@ public class Common {
             Color.rgb(246, 224, 209)
     };
 
+    //Banner Select Resource
+    public static final int[] PICK_BANNER = {
+            R.drawable.click_color_1_st,
+            R.drawable.click_color_2_nd,
+            R.drawable.click_color_3_rd,
+            R.drawable.click_color_4_th,
+            R.drawable.click_color_5_th,
+            R.drawable.click_color_6_th,
+            R.drawable.click_color_7_th,
+            R.drawable.click_color_8_th,
+            R.drawable.click_color_9_th,
+            R.drawable.click_color_10_th,
+    };
     public static int mailRandNum() {
         Random rand = new Random();
         randNum = rand.nextInt(999999 - 100000 + 1) + 100000;
@@ -73,5 +93,15 @@ public class Common {
                 return true;
             }
         }
+    }
+    public static void setCountry(){
+        countryArrayList = new ArrayList<>();
+        countryArrayList.add(new Country("Korea", R.drawable.country_south_korea));
+        countryArrayList.add(new Country("UnitedKingdom(UK)", R.drawable.country_uk));
+        countryArrayList.add(new Country("United States of America(USA)", R.drawable.country_usa));
+        countryArrayList.add(new Country("Japan", R.drawable.country_japan));
+        countryArrayList.add(new Country("China", R.drawable.country_china));
+        countryArrayList.add(new Country("Taiwan", R.drawable.country_taiwan));
+        countryArrayList.add(new Country("Canada", R.drawable.country_canada));
     }
 }

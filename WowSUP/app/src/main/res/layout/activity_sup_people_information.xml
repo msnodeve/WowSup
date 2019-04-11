@@ -156,89 +156,109 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="9dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:background="@drawable/information_box"
                         android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="20dp"
-                            android:layout_weight="10"
-                            android:orientation="vertical" >
-
-                        <com.rey.material.widget.Slider
-                            style="@style/Material.Widget.Slider"
-                            android:id="@+id/info_slider"
-                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center"
-                            app:sl_primaryColor="@color/wowSupBasic7"
-                            app:sl_secondaryColor="@color/wowSupBasic3"
-                            app:sl_discreteMode="true"
-                            app:sl_travelAnimDuration ="50"
-                            app:sl_minValue="1"
-                            app:sl_maxValue="100"
-                            app:sl_value="20"/>
+                            android:layout_marginTop="50dp"
+                            android:layout_weight="10"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="10"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/info_txt_age"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="4"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <RadioGroup
+                                    android:id="@+id/info_group"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/info_radio_f"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginRight="10dp"
+                                        android:layout_weight="1"
+                                        android:buttonTint="@color/wowSupBasic3"
+                                        android:fontFamily="@font/hanmaumgodic_m"
+                                        android:text="Female"
+                                        android:textSize="14sp" />
+
+                                    <RadioButton
+                                        android:id="@+id/info_radio_m"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_weight="1"
+                                        android:buttonTint="@color/wowSupBasic3"
+                                        android:fontFamily="@font/hanmaumgodic_m"
+                                        android:text="Male"
+                                        android:textSize="14sp" />
+                                </RadioGroup>
+                            </LinearLayout>
 
                         </LinearLayout>
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_marginBottom="10dp"
                             android:layout_weight="10"
-                            android:gravity="bottom|center"
                             android:orientation="horizontal">
 
-                            <RadioGroup
-                                android:id="@+id/gendergroup"
-                                android:layout_width="wrap_content"
+                            <LinearLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:orientation="horizontal">
+                                android:layout_weight="10"
+                                android:gravity="center"
+                                android:orientation="vertical">
 
-                                <RadioButton
-                                    android:id="@+id/female"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/hanmaumgodic_m"
-                                    android:text="Femal"
-                                    android:textSize="14sp" />
-
-                                <RadioButton
-                                    android:id="@+id/male"
+                                <TextView
+                                    android:id="@+id/textView20"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_weight="1"
                                     android:fontFamily="@font/hanmaumgodic_m"
-                                    android:text="Male"
+                                    android:text="Country"
+                                    android:textColor="#808183"
                                     android:textSize="14sp" />
-                            </RadioGroup>
+                            </LinearLayout>
 
-                        </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="4"
+                                android:gravity="center"
+                                android:orientation="vertical">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="10"
-                            android:gravity="center|top"
-                            android:orientation="horizontal">
+                                <Spinner
+                                    android:id="@+id/info_spinner"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/hanmaumgodic_m"
+                                    android:spinnerMode="dropdown" />
 
-                            <TextView
-                                android:id="@+id/textView20"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/hanmaumgodic_m"
-                                android:text="Country"
-                                android:textColor="#808183"
-                                android:textSize="14sp" />
-
-                            <Spinner
-                                android:id="@+id/countryspinner"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/hanmaumgodic_m"
-                                android:spinnerMode="dropdown" />
+                            </LinearLayout>
 
                         </LinearLayout>
                     </LinearLayout>
@@ -253,6 +273,18 @@
                         android:text="Choose your information."
                         android:textColor="#808183"
                         android:textSize="16.7sp" />
+
+                    <com.rey.material.widget.Slider
+                        android:id="@+id/info_slider"
+                        style="@style/Material.Widget.Slider"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:sl_discreteMode="true"
+                        app:sl_maxValue="100"
+                        app:sl_minValue="1"
+                        app:sl_primaryColor="@color/wowSupBasic7"
+                        app:sl_secondaryColor="@color/wowSupBasic3"
+                        app:sl_value="20" />
 
                 </RelativeLayout>
 

@@ -8,6 +8,7 @@ public class ResponseProfile {
     private int age;
     private int banner;
     private int token;
+    private int change;
     private String imageURL;
     private String nick;
     private String gender;
@@ -117,5 +118,13 @@ public class ResponseProfile {
 
     public void setUserMessage(String userMessage) {
         this.userMessage = userMessage;
+    }
+
+    public int getChange() {
+        return change;
+    }
+
+    public void setChange(int change) {
+        this.change = change;
     }
 }
