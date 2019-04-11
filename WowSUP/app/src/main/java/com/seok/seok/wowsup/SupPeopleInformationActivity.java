@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.rey.material.widget.Slider;
 import com.seok.seok.wowsup.adapter.CountryAdapter;
+import com.seok.seok.wowsup.dialog.ModifyConfirmDialog;
 import com.seok.seok.wowsup.retrofit.model.ResponseProfile;
 import com.seok.seok.wowsup.retrofit.remote.ApiUtils;
 import com.seok.seok.wowsup.utilities.Common;
@@ -63,11 +64,14 @@ public class SupPeopleInformationActivity extends AppCompatActivity {
     }
     @OnClick(R.id.info_btn_modify)
     void modify() {
+        ModifyConfirmDialog dialog = new ModifyConfirmDialog(this);
+        dialog.setData(userSelf.getText().toString(), userAge, userGender, userCountry, userBannerColor, change);
         if(change==0){
-
+            dialog.setTxtQnA(getString(R.string.first_update_profile));
         }else{
-
+            dialog.setTxtQnA(getString(R.string.update_profile));
         }
+        dialog.show();
     }
 
     public void initData(){

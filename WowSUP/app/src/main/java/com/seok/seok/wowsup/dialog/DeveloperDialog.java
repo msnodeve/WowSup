@@ -13,9 +13,6 @@ import com.seok.seok.wowsup.R;
 import com.seok.seok.wowsup.WebViewActivity;
 import com.seok.seok.wowsup.utilities.GlobalWowSup;
 
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 public class DeveloperDialog extends Dialog {
     private static int LAYOUT;
     private Context context;

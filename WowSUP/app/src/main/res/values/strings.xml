@@ -13,4 +13,6 @@
 
     <!-- Dialog Text -->
     <string name="upload_story">Number of Tokens - 1\nWould you like to post it?\n(Not editable)</string>
+    <string name="first_update_profile">The first information change does not cost tokens.\nDo you want to change it?</string>
+    <string name="update_profile">Number of Tokens - 1\nAre you sure you want to change this information?</string>
 </resources>
