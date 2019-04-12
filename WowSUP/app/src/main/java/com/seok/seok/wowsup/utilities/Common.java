@@ -104,4 +104,7 @@ public class Common {
         countryArrayList.add(new Country("Taiwan", R.drawable.country_taiwan));
         countryArrayList.add(new Country("Canada", R.drawable.country_canada));
     }
+
+
+
 }

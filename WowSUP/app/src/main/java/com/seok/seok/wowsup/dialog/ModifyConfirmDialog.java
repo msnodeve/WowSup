@@ -1,19 +1,26 @@
 package com.seok.seok.wowsup.dialog;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.seok.seok.wowsup.R;
+import com.seok.seok.wowsup.retrofit.model.ResponseProfile;
+import com.seok.seok.wowsup.retrofit.remote.ApiUtils;
 import com.seok.seok.wowsup.utilities.GlobalWowSup;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ModifyConfirmDialog extends Dialog {
     @BindView(R.id.dialog_layout)
@@ -61,6 +68,25 @@ public class ModifyConfirmDialog extends Dialog {
         this.strQnA = strQnA;
     }
     public void updateProfile(){
+        ApiUtils.getProfileService().updateProfile(GlobalWowSup.getInstance().getId(),userAge,gender,country,userInfo,change).enqueue(new Callback<ResponseProfile>() {
+            @Override
+            public void onResponse(Call<ResponseProfile> call, Response<ResponseProfile> response) {
+                if(response.isSuccessful()){
+                    ResponseProfile body = response.body();
+                    if(body.getState()==0){
+                        Toast.makeText(context, "Update successful!", Toast.LENGTH_SHORT).show();
+                        ((Activity) context).finish();
+                    }else {
+                        Toast.makeText(context, "Update Failed!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                dismiss();
+            }
 
+            @Override
+            public void onFailure(Call<ResponseProfile> call, Throwable t) {
+                Log.d("WowSup_ModifyDialog_HTTP", "http trans Failed");
+            }
+        });
     }
 }

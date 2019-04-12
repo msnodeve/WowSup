@@ -71,7 +71,6 @@ public class WriteConfirmDialog extends Dialog {
             @Override
             public void onFailure(Call<ResponseStory> call, Throwable t) {
                 Log.d("WowSup_WriteDialog_HTTP", "http trans Failed");
-                Toast.makeText(context, "Upload Failed!", Toast.LENGTH_SHORT).show();
             }
         };
     }

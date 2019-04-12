@@ -118,9 +118,10 @@ public class SupPeopleInformationActivity extends AppCompatActivity {
                         slider.setValue(body.getAge(),true);
                         txtAge.setText("Age : " + body.getAge());
                         change = body.getChange();
+                        userBannerColor = body.getBanner();
                         setGroup(body.getGender());
                         setCountry(body.getNationality());
-                        layouts[body.getBanner()].setBackgroundResource(Common.PICK_BANNER[body.getBanner()]);
+                        layouts[userBannerColor].setBackgroundResource(Common.PICK_BANNER[userBannerColor]);
                     }
                 }
             }

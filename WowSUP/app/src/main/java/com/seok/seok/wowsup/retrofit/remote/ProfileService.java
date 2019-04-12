@@ -12,4 +12,12 @@ public interface ProfileService {
 
     @POST("Profile/profile.php")
     Call<ResponseProfile> profile(@Query("userID") String userID);
+
+    @POST("Profile/updateProfile.php")
+    Call<ResponseProfile> updateProfile(@Query("userID") String userID,
+                                        @Query("userAge") int userAge,
+                                        @Query("userGender") String userGender,
+                                        @Query("userCountry") String userCountry,
+                                        @Query("userSelfish") String userSelf,
+                                        @Query("userChange") int change);
 }

@@ -40,4 +40,7 @@ public interface StoryService {
                                          @Query("tag5") String tag5,
                                          @Part MultipartBody.Part file,
                                          @Part("file") RequestBody name);
+
+    @GET("Story/recommendTag.php")
+    Call<ResponseStory> recommendTag(@Query("number") int randNum);
 }

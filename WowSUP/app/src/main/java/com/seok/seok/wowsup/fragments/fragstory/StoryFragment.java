@@ -23,11 +23,13 @@ import com.bumptech.glide.Glide;
 import com.seok.seok.wowsup.R;
 import com.seok.seok.wowsup.adapter.CardListAdapter;
 import com.seok.seok.wowsup.retrofit.model.ResponseProfile;
+import com.seok.seok.wowsup.retrofit.model.ResponseStory;
 import com.seok.seok.wowsup.retrofit.remote.ApiUtils;
 import com.seok.seok.wowsup.utilities.CardData;
 import com.seok.seok.wowsup.utilities.GlobalWowSup;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,6 +40,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class StoryFragment extends Fragment {
+    private Random randTag;
     private View view;
     private ArrayList<CardData> cardViewData;
     private CardListAdapter mAdapter;
@@ -82,5 +85,22 @@ public class StoryFragment extends Fragment {
             cardViewData.add(new CardData(i + "", i + "", i + "", i + "", i + "", "http://www.heywowsup.com/wowsup/Image/SupPeople_basic2.png"));
         }
         mRecyclerView.setAdapter(mAdapter);
+
+        ApiUtils.getStoryService().recommendTag(new Random().nextInt(5)).enqueue(new Callback<ResponseStory>() {
+            @Override
+            public void onResponse(Call<ResponseStory> call, Response<ResponseStory> response) {
+                if(response.isSuccessful()){
+                    ResponseStory body = response.body();
+                    if(body.getState()==0){
+                        txtTopic.setText(body.getTag());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseStory> call, Throwable t) {
+
+            }
+        });
     }
 }

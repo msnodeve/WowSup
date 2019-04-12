@@ -7,6 +7,7 @@ public class ResponseStory {
     private String title;
     private String body;
     private int cntLike;
+    private String tag;
     private String tag1;
     private String tag2;
     private String tag3;
@@ -53,6 +54,14 @@ public class ResponseStory {
 
     public void setCntLike(int cntLike) {
         this.cntLike = cntLike;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
     }
 
     public String getTag1() {

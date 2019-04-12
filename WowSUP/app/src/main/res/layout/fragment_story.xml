@@ -97,7 +97,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
                     android:fontFamily="@font/hanmaumgodic_b"
-                    android:text="[ TODAY TOPIC ]"
+                    android:text="[ Suggested Tags ]"
                     android:textSize="14sp" />
 
                 <LinearLayout
@@ -111,7 +111,7 @@
                     <TextView
                         android:id="@+id/frag_st_txt_topic"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:fontFamily="@font/hanmaumgodic_m"
                         android:text="# Fire"
                         android:textSize="14sp" />
