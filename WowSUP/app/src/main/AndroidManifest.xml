@@ -17,7 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-        <activity android:name=".SupPeopleInformationActivity"
+        <activity android:name=".StoryActivity"></activity>
+        <activity
+            android:name=".SupPeopleInformationActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".StoreActivity" />
         <activity
