@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.seok.seok.wowsup.R;
@@ -22,12 +21,14 @@ import com.seok.seok.wowsup.StoreActivity;
 import com.seok.seok.wowsup.StoryWriteActivity;
 import com.seok.seok.wowsup.SupPeopleInformationActivity;
 import com.seok.seok.wowsup.retrofit.model.ResponseProfile;
+import com.seok.seok.wowsup.retrofit.model.ResponseStory;
 import com.seok.seok.wowsup.retrofit.remote.ApiUtils;
 import com.seok.seok.wowsup.utilities.CardData;
 import com.seok.seok.wowsup.adapter.CardListAdapter;
 import com.seok.seok.wowsup.utilities.GlobalWowSup;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,6 +42,7 @@ public class ProfileFragment extends Fragment {
     private View view;
     private ArrayList<CardData> cardViewData;
     private CardListAdapter mAdapter;
+    private int start;
     @BindView(R.id.frag_pf_list)
     RecyclerView mRecyclerView;
     @BindView(R.id.frag_pf_txt_like)
@@ -55,7 +57,8 @@ public class ProfileFragment extends Fragment {
     ImageView imgProfile;
 
     public ProfileFragment() {
-
+        cardViewData = new ArrayList<>();
+        start = 0;
     }
 
     public static ProfileFragment newInstance() {
@@ -65,8 +68,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        cardViewData = new ArrayList<>();
-        mAdapter = new CardListAdapter(cardViewData, this.getContext());
+
     }
 
     @Override
@@ -75,8 +77,6 @@ public class ProfileFragment extends Fragment {
         ButterKnife.bind(this, view);
         init();
         getServerProfile();
-        initData();
-
         return view;
     }
 
@@ -87,7 +87,7 @@ public class ProfileFragment extends Fragment {
 
     @OnClick(R.id.frag_pf_ibtn_notice)
     void noticeFriend() {
-
+        getDataFromServer();
     }
 
     @OnClick(R.id.frag_pf_img_profile)
@@ -129,13 +129,7 @@ public class ProfileFragment extends Fragment {
         });
     }
 
-    protected void initData() {
+    protected void getDataFromServer() {
 
-
-
-        for (int i = 1; i <= 16; i++) {
-            cardViewData.add(new CardData(i + "", i + "", i + "", i + "", i + "", "http://www.heywowsup.com/wowsup/Image/SupPeople_basic2.png"));
-        }
-        mRecyclerView.setAdapter(mAdapter);
     }
 }

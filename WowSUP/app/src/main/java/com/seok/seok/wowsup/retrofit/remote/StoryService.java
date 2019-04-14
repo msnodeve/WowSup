@@ -17,6 +17,9 @@ import retrofit2.http.Query;
 public interface StoryService {
     //서버 요청 URL
 
+    @GET("Story/showStory.php")
+    Call<List<ResponseStory>> showStory(@Query("start") int start);
+
     @POST("Story/uploadStory.php")
     Call<ResponseStory> uploadStory(@Query("userID") String id,
                                     @Query("title") String title,

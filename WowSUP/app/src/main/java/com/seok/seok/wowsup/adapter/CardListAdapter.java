@@ -3,9 +3,11 @@ package com.seok.seok.wowsup.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -45,6 +47,10 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.ViewHo
         viewHolder.imgHeart.setImageResource(R.drawable.heart);
         viewHolder.txtTitle.setText(item.getTitle());
         viewHolder.txtLike.setText(item.getCntLike());
+        FrameLayout.LayoutParams backLayout = new FrameLayout.LayoutParams(viewHolder.layoutStoryBackground.getLayoutParams());
+        backLayout.height = (int) (GlobalWowSup.getInstance().getUserHeight() / 5.5);
+        backLayout.setMargins(10,10,10,10);
+        viewHolder.layoutStoryBackground.setLayoutParams(backLayout);
         Glide.with(viewHolder.itemView.getContext().getApplicationContext())
                 .load(item.getImageURL())
                 .into(new ViewTarget<LinearLayout, GlideDrawable>((LinearLayout) viewHolder.itemView) {
