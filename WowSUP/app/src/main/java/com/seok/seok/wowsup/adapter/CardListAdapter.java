@@ -46,7 +46,7 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.ViewHo
         CardData item = items.get(i);
         viewHolder.imgHeart.setImageResource(R.drawable.heart);
         viewHolder.txtTitle.setText(item.getTitle());
-        viewHolder.txtLike.setText(item.getCntLike());
+        viewHolder.txtLike.setText(item.getCntLike()+"");
         FrameLayout.LayoutParams backLayout = new FrameLayout.LayoutParams(viewHolder.layoutStoryBackground.getLayoutParams());
         backLayout.height = (int) (GlobalWowSup.getInstance().getUserHeight() / 5.5);
         backLayout.setMargins(10,10,10,10);

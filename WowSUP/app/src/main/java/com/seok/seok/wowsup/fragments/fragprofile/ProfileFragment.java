@@ -68,7 +68,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        mAdapter = new CardListAdapter(cardViewData, this.getContext());
     }
 
     @Override
@@ -77,6 +77,11 @@ public class ProfileFragment extends Fragment {
         ButterKnife.bind(this, view);
         init();
         getServerProfile();
+        if (start == 0) {
+            start++;
+            getDataFromServer();
+        }
+        mRecyclerView.setAdapter(mAdapter);
         return view;
     }
 
@@ -87,7 +92,7 @@ public class ProfileFragment extends Fragment {
 
     @OnClick(R.id.frag_pf_ibtn_notice)
     void noticeFriend() {
-        getDataFromServer();
+
     }
 
     @OnClick(R.id.frag_pf_img_profile)
@@ -130,6 +135,26 @@ public class ProfileFragment extends Fragment {
     }
 
     protected void getDataFromServer() {
+        ApiUtils.getStoryService().myStory(GlobalWowSup.getInstance().getId()).enqueue(new Callback<List<ResponseStory>>() {
+            @Override
+            public void onResponse(Call<List<ResponseStory>> call, Response<List<ResponseStory>> response) {
+                if (response.isSuccessful()) {
+                    Log.d("WowSup_Profile_Response", "http Response Success");
+                    List<ResponseStory> body = response.body();
+                    for (int i = 0; i < body.size(); i++) {
+                        cardViewData.add(new CardData(body.get(i).getStoryID() + "",
+                                body.get(i).getUserID() + "", body.get(i).getTitle() + "",
+                                body.get(i).getBody() + "", body.get(i).getCntLike() + "", body.get(i).getImageURL()));
+                    }
+                    if (mAdapter.getItemCount() == body.size()) {
+                        mRecyclerView.setAdapter(mAdapter);
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<List<ResponseStory>> call, Throwable t) {
 
+            }
+        });
     }
 }

@@ -56,6 +56,7 @@ public class StoryFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mAdapter = new CardListAdapter(cardViewData, this.getContext());
     }
 
     @Override
@@ -64,7 +65,6 @@ public class StoryFragment extends Fragment {
         ButterKnife.bind(this, view);
         init();
         initData();
-        mAdapter = new CardListAdapter(cardViewData, this.getContext());
         if (start == 0) {
             getDataFromServer();
         }
