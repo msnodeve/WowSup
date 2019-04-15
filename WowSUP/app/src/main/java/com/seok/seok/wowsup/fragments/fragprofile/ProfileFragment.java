@@ -77,11 +77,7 @@ public class ProfileFragment extends Fragment {
         ButterKnife.bind(this, view);
         init();
         getServerProfile();
-        if (start == 0) {
-            start++;
-            getDataFromServer();
-        }
-        mRecyclerView.setAdapter(mAdapter);
+        getDataFromServer();
         return view;
     }
 
@@ -112,16 +108,16 @@ public class ProfileFragment extends Fragment {
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
     }
 
-    protected void getServerProfile(){
+    protected void getServerProfile() {
         ApiUtils.getProfileService().profile(GlobalWowSup.getInstance().getId()).enqueue(new Callback<ResponseProfile>() {
             @Override
             public void onResponse(Call<ResponseProfile> call, Response<ResponseProfile> response) {
                 Log.d("WowSup_profile_HTTP", "http trans Success");
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     ResponseProfile body = response.body();
-                    txtLike.setText(body.getCntLike()+"");
+                    txtLike.setText(body.getCntLike() + "");
                     txtFriend.setText(body.getCntFriend() + "");
-                    txtToken.setText(body.getToken()+"");
+                    txtToken.setText(body.getToken() + "");
                     btnNotice.setText(body.getCntNotice() + "");
                     Glide.with(getActivity()).load(body.getImageURL()).centerCrop().crossFade().bitmapTransform(new CropCircleTransformation(getActivity())).into(imgProfile);
                 }
@@ -134,7 +130,8 @@ public class ProfileFragment extends Fragment {
         });
     }
 
-    protected void getDataFromServer() {
+    public void getDataFromServer() {
+        cardViewData.clear();
         ApiUtils.getStoryService().myStory(GlobalWowSup.getInstance().getId()).enqueue(new Callback<List<ResponseStory>>() {
             @Override
             public void onResponse(Call<List<ResponseStory>> call, Response<List<ResponseStory>> response) {
@@ -151,6 +148,7 @@ public class ProfileFragment extends Fragment {
                     }
                 }
             }
+
             @Override
             public void onFailure(Call<List<ResponseStory>> call, Throwable t) {
 

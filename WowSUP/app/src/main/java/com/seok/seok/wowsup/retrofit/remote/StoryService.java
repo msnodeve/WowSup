@@ -20,6 +20,22 @@ public interface StoryService {
     @POST("Story/myStory.php")
     Call<List<ResponseStory>> myStory(@Query("userID") String userID);
 
+    @POST("Story/pickStory.php")
+    Call<ResponseStory> pickStory(@Query("userID") String userID,
+                                  @Query("storyID") String storyID);
+
+    @POST("Story/likeStory.php")
+    Call<ResponseStory> likeStory(@Query("userID") String userID,
+                                  @Query("storyID") String storyID);
+
+    @POST("Story/deleteStory.php")
+    Call<ResponseStory> deleteStory(@Query("userID") String userID,
+                                    @Query("storyID") String storyID);
+
+    @POST("Story/banStory.php")
+    Call<ResponseStory> banStory(@Query("userID") String userID,
+                                 @Query("storyID") String storyID);
+
     @GET("Story/showStory.php")
     Call<List<ResponseStory>> showStory(@Query("start") int start);
 

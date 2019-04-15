@@ -36,7 +36,7 @@ public class StoryFragment extends Fragment {
     private View view;
     private ArrayList<CardData> cardViewData;
     private int start, itemTotalCount;
-    private boolean flag;
+    private boolean flag, showToast;
     private CardListAdapter mAdapter;
     @BindView(R.id.frag_st_list)
     RecyclerView mRecyclerView;
@@ -47,6 +47,7 @@ public class StoryFragment extends Fragment {
         cardViewData = new ArrayList<>();
         start = 0;
         flag = false;
+        showToast = false;
     }
 
     public static StoryFragment newInstance() {
@@ -101,7 +102,10 @@ public class StoryFragment extends Fragment {
                     flag = true;
                     getDataFromServer();
                 }else{
-                    Toast.makeText(getContext(), "No more stories to import.", Toast.LENGTH_SHORT).show();
+                    if(!showToast) {
+                        showToast = true;
+                        Toast.makeText(getContext(), "No more stories to import.", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         }
@@ -145,6 +149,7 @@ public class StoryFragment extends Fragment {
                         if(start!=20)
                             mRecyclerView.scrollToPosition(mRecyclerView.getAdapter().getItemCount() - 14);
                         flag = false;
+                        showToast = false;
                     }
                 }
             }

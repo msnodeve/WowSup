@@ -1,16 +1,15 @@
 package com.seok.seok.wowsup.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
@@ -18,8 +17,8 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.ViewTarget;
 import com.seok.seok.wowsup.R;
 import com.seok.seok.wowsup.utilities.CardData;
-import com.seok.seok.wowsup.utilities.Common;
 import com.seok.seok.wowsup.utilities.GlobalWowSup;
+import com.seok.seok.wowsup.wowsup.StoryActivity;
 
 import java.util.ArrayList;
 
@@ -43,7 +42,7 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull final CardListAdapter.ViewHolder viewHolder, int i) {
-        CardData item = items.get(i);
+        final CardData item = items.get(i);
         viewHolder.imgHeart.setImageResource(R.drawable.heart);
         viewHolder.txtTitle.setText(item.getTitle());
         viewHolder.txtLike.setText(item.getCntLike()+"");
@@ -63,9 +62,9 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.ViewHo
         viewHolder.layoutStoryBackground.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(view.getContext(), StoryActivity.class);
-//                intent.putExtra("storyID", item.getStoryID());
-//                context.startActivity(intent);
+                Intent intent = new Intent(view.getContext(), StoryActivity.class);
+                intent.putExtra("storyID", item.getStoryID());
+                context.startActivity(intent);
             }
         });
     }

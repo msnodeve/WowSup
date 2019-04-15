@@ -23,4 +23,7 @@ public class ApiUtils {
     public static StoreService getStoreService() {
         return RetrofitClient.getClient(BASE_URL).create(StoreService.class);
     }
+    public static CommonService getCommonService() {
+        return RetrofitClient.getClient(BASE_URL).create(CommonService.class);
+    }
 }
