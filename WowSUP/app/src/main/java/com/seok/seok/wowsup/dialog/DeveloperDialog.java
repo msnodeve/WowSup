@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.seok.seok.wowsup.R;
-import com.seok.seok.wowsup.WebViewActivity;
+import com.seok.seok.wowsup.wowsup.WebViewActivity;
 import com.seok.seok.wowsup.utilities.GlobalWowSup;
 
 public class DeveloperDialog extends Dialog {

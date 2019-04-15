@@ -17,9 +17,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.seok.seok.wowsup.R;
-import com.seok.seok.wowsup.StoreActivity;
-import com.seok.seok.wowsup.StoryWriteActivity;
-import com.seok.seok.wowsup.SupPeopleInformationActivity;
+import com.seok.seok.wowsup.wowsup.StoreActivity;
+import com.seok.seok.wowsup.wowsup.StoryWriteActivity;
+import com.seok.seok.wowsup.wowsup.SupPeopleInformationActivity;
 import com.seok.seok.wowsup.retrofit.model.ResponseProfile;
 import com.seok.seok.wowsup.retrofit.model.ResponseStory;
 import com.seok.seok.wowsup.retrofit.remote.ApiUtils;

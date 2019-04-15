@@ -4,12 +4,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.seok.seok.wowsup.MainActivity;
+import com.seok.seok.wowsup.wowsup.MainActivity;
 import com.seok.seok.wowsup.R;
 import com.seok.seok.wowsup.retrofit.model.ResponseLogin;
 import com.seok.seok.wowsup.retrofit.remote.ApiUtils;

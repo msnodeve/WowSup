@@ -1,4 +1,4 @@
-package com.seok.seok.wowsup;
+package com.seok.seok.wowsup.wowsup;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.seok.seok.wowsup.R;
 import com.seok.seok.wowsup.fragments.fragchat.ChatFragment;
 import com.seok.seok.wowsup.fragments.fragglobal.GlobalFragment;
 import com.seok.seok.wowsup.fragments.fragprofile.ProfileFragment;

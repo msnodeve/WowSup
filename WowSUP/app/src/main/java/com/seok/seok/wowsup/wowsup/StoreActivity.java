@@ -1,4 +1,4 @@
-package com.seok.seok.wowsup;
+package com.seok.seok.wowsup.wowsup;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.SkuDetails;
 import com.anjlab.android.iab.v3.TransactionDetails;
+import com.seok.seok.wowsup.R;
 import com.seok.seok.wowsup.retrofit.model.ResponseStore;
 import com.seok.seok.wowsup.retrofit.remote.ApiUtils;
 import com.seok.seok.wowsup.utilities.GlobalWowSup;

@@ -17,21 +17,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-        <activity android:name=".StoryActivity"></activity>
+        <activity android:name=".wowsup.StoryActivity"></activity>
         <activity
-            android:name=".SupPeopleInformationActivity"
+            android:name=".wowsup.SupPeopleInformationActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".StoreActivity" />
+        <activity android:name=".wowsup.StoreActivity" />
         <activity
-            android:name=".StoryWriteActivity"
+            android:name=".wowsup.StoryWriteActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".WebViewActivity" />
+        <activity android:name=".wowsup.WebViewActivity" />
         <activity android:name=".login.RegisterActivity" />
         <activity android:name=".login.WelcomeActivity" />
         <activity android:name=".login.LostInfoActivity" />
         <activity android:name=".login.LoginActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".LauncherActivity">
+        <activity android:name=".wowsup.MainActivity" />
+        <activity android:name=".wowsup.LauncherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

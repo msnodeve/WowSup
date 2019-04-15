@@ -1,4 +1,4 @@
-package com.seok.seok.wowsup;
+package com.seok.seok.wowsup.wowsup;
 
 import android.content.Intent;
 import android.os.Handler;
@@ -6,7 +6,7 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.seok.seok.wowsup.login.LoginActivity;
+import com.seok.seok.wowsup.R;
 import com.seok.seok.wowsup.login.WelcomeActivity;
 import com.seok.seok.wowsup.utilities.Common;
 import com.seok.seok.wowsup.utilities.GlobalWowSup;

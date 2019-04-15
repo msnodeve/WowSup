@@ -1,4 +1,4 @@
-package com.seok.seok.wowsup;
+package com.seok.seok.wowsup.wowsup;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.rey.material.widget.Slider;
+import com.seok.seok.wowsup.R;
 import com.seok.seok.wowsup.adapter.CountryAdapter;
 import com.seok.seok.wowsup.dialog.ModifyConfirmDialog;
 import com.seok.seok.wowsup.retrofit.model.ResponseProfile;

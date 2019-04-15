@@ -1,4 +1,4 @@
-package com.seok.seok.wowsup;
+package com.seok.seok.wowsup.wowsup;
 
 import android.Manifest;
 import android.content.DialogInterface;
@@ -24,6 +24,7 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.ViewTarget;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
+import com.seok.seok.wowsup.R;
 import com.seok.seok.wowsup.dialog.WriteConfirmDialog;
 
 import java.io.File;
