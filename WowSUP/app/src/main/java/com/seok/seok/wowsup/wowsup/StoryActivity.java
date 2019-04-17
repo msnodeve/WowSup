@@ -19,6 +19,7 @@ import com.nightonke.boommenu.BoomButtons.HamButton;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
 import com.nightonke.boommenu.BoomMenuButton;
 import com.seok.seok.wowsup.R;
+import com.seok.seok.wowsup.dialog.BackgroundDialog;
 import com.seok.seok.wowsup.dialog.BanConfirmDialog;
 import com.seok.seok.wowsup.dialog.DeleteConfirmDialog;
 import com.seok.seok.wowsup.dialog.FriendConfirmDialog;
@@ -71,7 +72,8 @@ public class StoryActivity extends AppCompatActivity {
 
     @OnClick(R.id.story_layout_background)
     void showBack() {
-
+        BackgroundDialog backDialog = new BackgroundDialog(StoryActivity.this, imageURL);
+        backDialog.show();
     }
 
     @OnClick(R.id.story_ibtn_back)
