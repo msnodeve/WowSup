@@ -19,5 +19,6 @@ public interface ProfileService {
                                         @Query("userGender") String userGender,
                                         @Query("userCountry") String userCountry,
                                         @Query("userSelfish") String userSelf,
+                                        @Query("userBanner") int userBanner,
                                         @Query("userChange") int change);
 }

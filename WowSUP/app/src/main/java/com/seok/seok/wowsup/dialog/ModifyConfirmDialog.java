@@ -68,7 +68,7 @@ public class ModifyConfirmDialog extends Dialog {
         this.strQnA = strQnA;
     }
     public void updateProfile(){
-        ApiUtils.getProfileService().updateProfile(GlobalWowSup.getInstance().getId(),userAge,gender,country,userInfo,change).enqueue(new Callback<ResponseProfile>() {
+        ApiUtils.getProfileService().updateProfile(GlobalWowSup.getInstance().getId(),userAge,gender,country,userInfo, banner, change).enqueue(new Callback<ResponseProfile>() {
             @Override
             public void onResponse(Call<ResponseProfile> call, Response<ResponseProfile> response) {
                 if(response.isSuccessful()){
