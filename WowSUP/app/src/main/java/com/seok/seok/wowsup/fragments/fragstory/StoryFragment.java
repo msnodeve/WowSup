@@ -36,18 +36,20 @@ public class StoryFragment extends Fragment {
     private View view;
     private ArrayList<CardData> cardViewData;
     private int start, itemTotalCount;
-    private boolean flag, showToast;
+    private boolean flag, showToast, option;
     private CardListAdapter mAdapter;
     @BindView(R.id.frag_st_list)
     RecyclerView mRecyclerView;
     @BindView(R.id.frag_st_txt_topic)
     TextView txtTopic;
-
+    @BindView(R.id.frag_st_edt_search)
+    TextView edtSearchTag;
     public StoryFragment() {
         cardViewData = new ArrayList<>();
         start = 0;
         flag = false;
         showToast = false;
+        option = false;
     }
 
     public static StoryFragment newInstance() {
@@ -75,6 +77,34 @@ public class StoryFragment extends Fragment {
 
     @OnClick(R.id.frag_st_btn_search)
     void searchHash() {
+        option = true;
+        if(edtSearchTag.getText().length() > 0) {
+            cardViewData.clear();
+            ApiUtils.getStoryService().searchTag(edtSearchTag.getText().toString()).enqueue(new Callback<List<ResponseStory>>() {
+                @Override
+                public void onResponse(Call<List<ResponseStory>> call, Response<List<ResponseStory>> response) {
+                    Log.d("WowSup_StoryTag_HTTP", "http trans Success");
+                    if(response.isSuccessful()){
+                        List<ResponseStory> body = response.body();
+                        for(int i = 0 ; i<body.size(); i++){
+                            cardViewData.add(new CardData(body.get(i).getStoryID() + "",
+                                    body.get(i).getUserID() + "", body.get(i).getTitle() + "",
+                                    body.get(i).getBody() + "", body.get(i).getCntLike() + "", body.get(i).getImageURL()));
+                        }
+                        if (mAdapter.getItemCount() == body.size()) {
+                            mRecyclerView.setAdapter(mAdapter);
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<ResponseStory>> call, Throwable t) {
+                    Log.d("WowSup_StoryTag_HTTP", "http trans Failed");
+                }
+            });
+        }else{
+            Toast.makeText(getContext(), "Please enter a word", Toast.LENGTH_SHORT).show();
+        }
     }
 
     protected void init() {
@@ -94,17 +124,19 @@ public class StoryFragment extends Fragment {
         @Override
         public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
             super.onScrolled(recyclerView, dx, dy);
-            int lastVisibleItemPos = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
-            itemTotalCount = recyclerView.getAdapter().getItemCount();
-            Log.d("asdfasdf", lastVisibleItemPos + "  " + itemTotalCount);
-            if ((lastVisibleItemPos >= itemTotalCount - 2) && !flag) {
-                if((start % 20) == 0) {
-                    flag = true;
-                    getDataFromServer();
-                }else{
-                    if(!showToast) {
-                        showToast = true;
-                        Toast.makeText(getContext(), "No more stories to import.", Toast.LENGTH_SHORT).show();
+            if(!option) {
+                int lastVisibleItemPos = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
+                itemTotalCount = recyclerView.getAdapter().getItemCount();
+                Log.d("asdfasdf", lastVisibleItemPos + "  " + itemTotalCount);
+                if ((lastVisibleItemPos >= itemTotalCount - 2) && !flag) {
+                    if ((start % 20) == 0) {
+                        flag = true;
+                        getDataFromServer();
+                    } else {
+                        if (!showToast) {
+                            showToast = true;
+                            Toast.makeText(getContext(), "No more stories to import.", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
             }

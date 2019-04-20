@@ -73,6 +73,7 @@ public class StoryActivity extends AppCompatActivity {
     @OnClick(R.id.story_layout_background)
     void showBack() {
         BackgroundDialog backDialog = new BackgroundDialog(StoryActivity.this, imageURL);
+        backDialog.getWindow().setBackgroundDrawableResource(R.color.float_transparent);
         backDialog.show();
     }
 

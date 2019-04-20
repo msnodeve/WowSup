@@ -39,6 +39,9 @@ public interface StoryService {
     @GET("Story/showStory.php")
     Call<List<ResponseStory>> showStory(@Query("start") int start);
 
+    @GET("Story/searchTag.php")
+    Call<List<ResponseStory>> searchTag(@Query("tag") String tag);
+
     @POST("Story/uploadStory.php")
     Call<ResponseStory> uploadStory(@Query("userID") String id,
                                     @Query("title") String title,
