@@ -26,4 +26,7 @@ public class ApiUtils {
     public static CommonService getCommonService() {
         return RetrofitClient.getClient(BASE_URL).create(CommonService.class);
     }
+    public static ChatService getChatService(){
+        return RetrofitClient.getClient(BASE_URL).create(ChatService.class);
+    }
 }
