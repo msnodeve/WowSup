@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "443283586621",
+    "firebase_url": "https://wow-sup.firebaseio.com",
+    "project_id": "wow-sup",
+    "storage_bucket": "wow-sup.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:443283586621:android:d2f5aed82cc91c3e",
+        "android_client_info": {
+          "package_name": "com.seok.seok.wowsup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "443283586621-6re82f42f5p1s22rgs98kp3toavq24cn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.seok.seok.wowsup",
+            "certificate_hash": "c94e84eebb95ca0cc0c3d5f4b0a85387609759ec"
+          }
+        },
+        {
+          "client_id": "443283586621-bdt8tmip3khgu8venp9qi1i7gt7voimh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASfoslyYHpjpJ50uugjJVy-Jv7pvIu3CU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "443283586621-bdt8tmip3khgu8venp9qi1i7gt7voimh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

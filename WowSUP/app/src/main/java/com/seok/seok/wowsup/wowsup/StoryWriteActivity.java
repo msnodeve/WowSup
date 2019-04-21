@@ -14,6 +14,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -25,7 +26,9 @@ import com.bumptech.glide.request.target.ViewTarget;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 import com.seok.seok.wowsup.R;
+import com.seok.seok.wowsup.dialog.TranslateDialog;
 import com.seok.seok.wowsup.dialog.WriteConfirmDialog;
+import com.seok.seok.wowsup.utilities.Common;
 
 import java.io.File;
 import java.io.IOException;
@@ -53,10 +56,7 @@ public class StoryWriteActivity extends AppCompatActivity {
     EditText edtTag4;
     @BindView(R.id.write_edt_tag5)
     EditText edtTag5;
-    @BindView(R.id.write_edt_title)
-    EditText edtTitle;
-    @BindView(R.id.write_edt_body)
-    EditText edtBody;
+    public static EditText edtTitle, edtBody;
     @BindView(R.id.write_layout_back)
     LinearLayout layoutBack;
 
@@ -70,6 +70,10 @@ public class StoryWriteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_story_write);
         ButterKnife.bind(this);
         cameraPermission();
+        edtTitle = findViewById(R.id.write_edt_title);
+        edtBody = findViewById(R.id.write_edt_body);
+        edtTitle.setOnFocusChangeListener(onFocusChangeListener);
+        edtBody.setOnFocusChangeListener(onFocusChangeListener);
     }
 
     @OnClick(R.id.write_ibtn_back)
@@ -79,7 +83,7 @@ public class StoryWriteActivity extends AppCompatActivity {
 
     @OnClick(R.id.write_ibtn_help)
     void goHelp() {
-
+        new TranslateDialog(this).show();
     }
 
     @OnClick(R.id.write_ibtn_back1)
@@ -292,6 +296,20 @@ public class StoryWriteActivity extends AppCompatActivity {
             return;
         }
     }
-
-
+    //포커스 체인지 시 다음 리스너 사용
+    View.OnFocusChangeListener onFocusChangeListener = new View.OnFocusChangeListener() {
+        @Override
+        public void onFocusChange(View v, boolean hasFocus) {
+            switch (v.getId()) {
+                case R.id.write_edt_title:
+                    if (hasFocus)
+                        Common.translateOption = 1;
+                    break;
+                case R.id.write_edt_body:
+                    if (hasFocus)
+                        Common.translateOption = 2;
+                    break;
+            }
+        }
+    };
 }

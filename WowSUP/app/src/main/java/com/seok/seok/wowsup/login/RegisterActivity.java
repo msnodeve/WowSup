@@ -3,6 +3,7 @@ package com.seok.seok.wowsup.login;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.CountDownTimer;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -16,6 +17,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.seok.seok.wowsup.R;
 import com.seok.seok.wowsup.retrofit.model.ResponseLogin;
 import com.seok.seok.wowsup.retrofit.model.ResponseMail;
@@ -43,6 +49,9 @@ public class RegisterActivity extends AppCompatActivity implements Dialog.OnCanc
     private CountDownTimer countDownTimer;
     private Callback retrofitCallBack;
 
+    //FireBase 관련
+    private FirebaseAuth auth;
+
     @BindView(R.id.reg_edt_id)    EditText edtID;
     @BindView(R.id.reg_edt_pw)    EditText edtPW;
     @BindView(R.id.reg_edt_email)    EditText edtEmail;
@@ -52,6 +61,7 @@ public class RegisterActivity extends AppCompatActivity implements Dialog.OnCanc
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
+        auth = FirebaseAuth.getInstance();
         init();
     }
 
@@ -145,7 +155,10 @@ public class RegisterActivity extends AppCompatActivity implements Dialog.OnCanc
             }
         });
     }
-
+    private void updateUI(FirebaseUser currentUser) {
+        Log.d("asdf", currentUser.getUid());
+        Log.d("asdf", currentUser.getEmail());
+    }
     public void init() {
         retrofitCallBack = new Callback<ResponseLogin>() {
             @Override
@@ -156,6 +169,18 @@ public class RegisterActivity extends AppCompatActivity implements Dialog.OnCanc
                     if (body.getState() == 0) {
                         Toast.makeText(RegisterActivity.this, body.getMsg(), Toast.LENGTH_SHORT).show();
                         if(checkInfo(Common.confirmID, Common.confirmEmail, edtPW.getText().toString())){
+                            auth.createUserWithEmailAndPassword(edtEmail.getText().toString(), edtPW.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if(task.isSuccessful()) {
+                                        Log.d("WowSup_FireBase_Reg", "http Reg Success");
+                                        FirebaseUser user = auth.getCurrentUser();
+                                        updateUI(user);
+                                    }else{
+
+                                    }
+                                }
+                            });
                             finish();
                         }
                         Common.confirmID = true;

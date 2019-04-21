@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.seok.seok.wowsup.R;
 
 import butterknife.BindView;
@@ -17,6 +19,7 @@ public class WelcomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_welcome);
         ButterKnife.bind(this);
     }
+
     @OnClick(R.id.welcome_btn_login) void btnLogin(){
         startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
     }

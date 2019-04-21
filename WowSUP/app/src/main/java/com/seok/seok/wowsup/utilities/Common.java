@@ -29,6 +29,9 @@ public class Common {
     public static final int FROM_ALBUM = 1;
     public static final int FROM_CAMERA = 2;
 
+    // 검색 및 번역 관련
+    public static int translateOption = 0;
+
     //Country 관련
     public static ArrayList<Country> countryArrayList;
 
@@ -74,6 +77,7 @@ public class Common {
         return true;
     }
 
+    //글 업로드 할 경우 영어 이외의 글은 제거
     public static boolean uploadConfirm(Context context, String title, String body){
         if(title.isEmpty() || title.length() == 0){
             Toast.makeText(context, "The title field is empty.", Toast.LENGTH_SHORT).show();
