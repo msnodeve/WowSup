@@ -18,4 +18,5 @@
     <string name="ask_friend">Number of Tokens -1\nWould you like to ask a friend?</string>
     <string name="ask_delete">Are you sure you want to delete this post?</string>
     <string name="ask_ban">Are you sure you want to report this post?\nYou can get a disadvantage if you report false.</string>
+    <string name="delete_chat">Are you sure you want to leave the chat?\nAre you sure you want to delete this friend?</string>
 </resources>

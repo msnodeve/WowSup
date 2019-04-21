@@ -15,4 +15,14 @@ public interface ChatService {
     //서버 요청 URL
     @POST("Chat/listFriend.php")
     Call<List<ResponseChat>> getFriendList(@Query("userID") String userID);
+
+    @POST("Chat/updateFriendNick.php")
+    Call<ResponseChat> setUpdateNick(@Query("userID") String userID,
+                                     @Query("friendID") String friendID,
+                                     @Query("nick") String nick);
+
+    @POST("Chat/deleteFriend.php")
+    Call<ResponseChat> deleteFriend(@Query("userID") String userID,
+                                     @Query("friendID") String friendID);
+
 }

@@ -5,6 +5,8 @@ public class ResponseChat {
     private String imageURL;
     private String friend;
     private String selfish;
+    private String msg;
+    private int state;
 
     public String getFriendNick() {
         return friendNick;
@@ -36,5 +38,21 @@ public class ResponseChat {
 
     public void setSelfish(String selfish) {
         this.selfish = selfish;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 }

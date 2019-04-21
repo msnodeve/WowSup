@@ -3,6 +3,7 @@ package com.seok.seok.wowsup.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +14,15 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.seok.seok.wowsup.R;
+import com.seok.seok.wowsup.dialog.ChatOptionDialog;
+import com.seok.seok.wowsup.dialog.FriendConfirmDialog;
 import com.seok.seok.wowsup.retrofit.model.ResponseChat;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.ChatViewHolder> {
@@ -26,7 +30,6 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Ch
     private View view;
     private List<ResponseChat> chatList;
     private Context context;
-
 
     public FriendListAdapter(Context context, List<ResponseChat> chatListObj){
         this.context = context;
@@ -46,6 +49,14 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Ch
         chatViewHolder.txtFID.setText(item.getFriendNick());
         chatViewHolder.txtFInfo.setText(item.getSelfish());
         Glide.with(context.getApplicationContext()).load(item.getImageURL()).centerCrop().crossFade().bitmapTransform(new CropCircleTransformation(context.getApplicationContext())).into(chatViewHolder.imgProfile);
+        chatViewHolder.imgProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ChatOptionDialog chatOptionDialog = new ChatOptionDialog(context, item.getFriend());
+                chatOptionDialog.getWindow().setBackgroundDrawableResource(R.color.float_transparent);
+                chatOptionDialog.show();
+            }
+        });
     }
 
     @Override
