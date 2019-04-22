@@ -155,9 +155,17 @@ public class RegisterActivity extends AppCompatActivity implements Dialog.OnCanc
             }
         });
     }
-    private void updateUI(FirebaseUser currentUser) {
-        Log.d("asdf", currentUser.getUid());
-        Log.d("asdf", currentUser.getEmail());
+    private void fireBaseReg(String email, String password) {
+        auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    Log.d("WowSup_Register_FB", "FB trans Success");
+                }else {
+                    Log.d("WowSup_Register_FB", "FB trans Failed");
+                }
+            }
+        });
     }
     public void init() {
         retrofitCallBack = new Callback<ResponseLogin>() {
@@ -169,18 +177,7 @@ public class RegisterActivity extends AppCompatActivity implements Dialog.OnCanc
                     if (body.getState() == 0) {
                         Toast.makeText(RegisterActivity.this, body.getMsg(), Toast.LENGTH_SHORT).show();
                         if(checkInfo(Common.confirmID, Common.confirmEmail, edtPW.getText().toString())){
-                            auth.createUserWithEmailAndPassword(edtEmail.getText().toString(), edtPW.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if(task.isSuccessful()) {
-                                        Log.d("WowSup_FireBase_Reg", "http Reg Success");
-                                        FirebaseUser user = auth.getCurrentUser();
-                                        updateUI(user);
-                                    }else{
-
-                                    }
-                                }
-                            });
+                            fireBaseReg(edtEmail.getText().toString(), edtPW.getText().toString());
                             finish();
                         }
                         Common.confirmID = true;
