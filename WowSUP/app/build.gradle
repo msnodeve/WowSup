@@ -32,7 +32,10 @@ dependencies {
     //Google inApp purchase
     implementation 'com.anjlab.android.iab.v3:library:1.0.44'
     //Google FireBase
-    implementation 'com.google.firebase:firebase-core:16.0.1'
+    implementation 'com.google.firebase:firebase-auth:16.1.0'
+    implementation 'com.google.firebase:firebase-core:16.0.7'
+    implementation 'com.google.firebase:firebase-database:16.1.0'
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
     // Butter Knife
     implementation 'com.jakewharton:butterknife:8.5.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
