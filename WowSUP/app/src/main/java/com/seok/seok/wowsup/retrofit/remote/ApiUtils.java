@@ -29,4 +29,7 @@ public class ApiUtils {
     public static ChatService getChatService(){
         return RetrofitClient.getClient(BASE_URL).create(ChatService.class);
     }
+    public static WordService getWordService() {
+        return RetrofitClient.getClient(BASE_URL).create(WordService.class);
+    }
 }

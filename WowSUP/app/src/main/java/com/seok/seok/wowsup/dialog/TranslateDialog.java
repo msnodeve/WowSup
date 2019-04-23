@@ -26,6 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.seok.seok.wowsup.wowsup.ChatActivity.edtChat;
 import static com.seok.seok.wowsup.wowsup.StoryWriteActivity.edtBody;
 import static com.seok.seok.wowsup.wowsup.StoryWriteActivity.edtTitle;
 
@@ -61,7 +62,7 @@ public class TranslateDialog extends Dialog {
         else if(Common.translateOption == 2)
             edtBody.setText(edtBody.getText().toString() + txtOrigin.getText().toString());
         else if(Common.translateOption == 3)
-            edtTitle.setText(edtTitle.getText().toString() + txtOrigin.getText().toString());
+            edtChat.setText(edtChat.getText().toString() + txtOrigin.getText().toString());
         dismiss();
     }
     @OnClick(R.id.trans_ibtn_back) void goBack(){

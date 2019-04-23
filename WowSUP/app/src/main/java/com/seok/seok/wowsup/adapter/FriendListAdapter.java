@@ -18,6 +18,7 @@ import com.seok.seok.wowsup.R;
 import com.seok.seok.wowsup.dialog.ChatOptionDialog;
 import com.seok.seok.wowsup.dialog.FriendConfirmDialog;
 import com.seok.seok.wowsup.retrofit.model.ResponseChat;
+import com.seok.seok.wowsup.utilities.Common;
 import com.seok.seok.wowsup.wowsup.ChatActivity;
 
 import java.util.List;
@@ -48,6 +49,7 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Ch
     @Override
     public void onBindViewHolder(ChatViewHolder chatViewHolder, int i) {
         final ResponseChat item = chatList.get(i);
+        Common.friendNick = item.getFriendNick();
         chatViewHolder.txtFID.setText(item.getFriendNick());
         chatViewHolder.txtFInfo.setText(item.getSelfish());
         Glide.with(context.getApplicationContext()).load(item.getImageURL()).centerCrop().crossFade().bitmapTransform(new CropCircleTransformation(context.getApplicationContext())).into(chatViewHolder.imgProfile);

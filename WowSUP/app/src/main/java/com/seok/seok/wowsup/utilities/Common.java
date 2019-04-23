@@ -25,6 +25,9 @@ public class Common {
     // Story 관련
     public static String imgStoryURL = "basic_image_1_st.png";
 
+    // Chat 관련
+    public static String friendNick = "SupPeople";
+
     // Camera 관련
     public static final int FROM_ALBUM = 1;
     public static final int FROM_CAMERA = 2;

@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.seok.seok.wowsup.R;
+import com.seok.seok.wowsup.wowsup.NoticeActivity;
 import com.seok.seok.wowsup.wowsup.StoreActivity;
 import com.seok.seok.wowsup.wowsup.StoryWriteActivity;
 import com.seok.seok.wowsup.wowsup.SupPeopleInformationActivity;
@@ -88,7 +89,7 @@ public class ProfileFragment extends Fragment {
 
     @OnClick(R.id.frag_pf_ibtn_notice)
     void noticeFriend() {
-
+        startActivity(new Intent(getActivity().getApplication(), NoticeActivity.class));
     }
 
     @OnClick(R.id.frag_pf_img_profile)
