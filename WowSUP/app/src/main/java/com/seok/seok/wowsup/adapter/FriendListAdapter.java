@@ -1,6 +1,7 @@
 package com.seok.seok.wowsup.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -17,6 +18,7 @@ import com.seok.seok.wowsup.R;
 import com.seok.seok.wowsup.dialog.ChatOptionDialog;
 import com.seok.seok.wowsup.dialog.FriendConfirmDialog;
 import com.seok.seok.wowsup.retrofit.model.ResponseChat;
+import com.seok.seok.wowsup.wowsup.ChatActivity;
 
 import java.util.List;
 
@@ -55,6 +57,15 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Ch
                 ChatOptionDialog chatOptionDialog = new ChatOptionDialog(context, item.getFriend());
                 chatOptionDialog.getWindow().setBackgroundDrawableResource(R.color.float_transparent);
                 chatOptionDialog.show();
+            }
+        });
+        chatViewHolder.btnOption.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String friendID = item.getFriend();
+                Intent intent = new Intent(context, ChatActivity.class);
+                intent.putExtra("friendID", friendID);
+                context.startActivity(intent);
             }
         });
     }

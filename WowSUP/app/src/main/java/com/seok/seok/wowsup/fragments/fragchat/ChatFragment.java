@@ -42,7 +42,8 @@ import jp.wasabeef.glide.transformations.CropCircleTransformation;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
+//        ChatData chatData = new ChatData("a", "msndo!?!?");  // 유저 이름과 메세지로 chatData 만들기
+//        databaseReference.child("message").push().setValue(chatData);  // 기본 database 하위 message라는 child에 chatData를 list로 만들기
 public class ChatFragment extends Fragment {
     private View view;
 

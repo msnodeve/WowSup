@@ -1,29 +1,30 @@
 package com.seok.seok.wowsup.utilities;
 
 public class ChatData {
-    private String userName;
-    private String message;
+    //채팅에 필요한 모델 클래스
+    public String email;
+    public String text;
 
-    public ChatData() { }
-
-    public ChatData(String userName, String message) {
-        this.userName = userName;
-        this.message = message;
+    public ChatData(){
+        //Default
     }
 
-    public String getUserName() {
-        return userName;
+    public ChatData(String email, String text) {
+        this.email = email;
+        this.text = text;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public String getText() {
+        return text;
     }
 
-    public String getMessage() {
-        return message;
+    public String getEmail() {
+        return email;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setText(String text) {
+        this.text = text;
     }
+
+    public void setEmail(String email) { this.email = email;}
 }

@@ -29,8 +29,6 @@ public class WelcomeActivity extends AppCompatActivity {
     }
     @OnClick(R.id.welcome_btn_login) void btnLogin(){
         startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
-//        ChatData chatData = new ChatData("a", "msndo!?!?");  // 유저 이름과 메세지로 chatData 만들기
-//        databaseReference.child("message").push().setValue(chatData);  // 기본 database 하위 message라는 child에 chatData를 list로 만들기
     }
     @OnClick(R.id.welcome_btn_signup) void btnSignUp(){
         startActivity(new Intent(WelcomeActivity.this, RegisterActivity.class));
