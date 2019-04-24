@@ -4,21 +4,21 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.seok.seok.wowsup"
-        minSdkVersion 19
+        minSdkVersion 18
         targetSdkVersion 28
-        versionCode 9
-        versionName "2.8.3"
+        versionCode 10
+        versionName "2.8.4"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
             //구글 플레이 올리기전 디버깅 릴리즈 코드
-//            aaptOptions.cruncherEnabled = false
-//            aaptOptions.useNewCruncher = false
-//            minifyEnabled false
-//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            aaptOptions.cruncherEnabled = false
+            aaptOptions.useNewCruncher = false
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            minifyEnabled false
+//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         lintOptions {
             checkReleaseBuilds false

@@ -78,8 +78,7 @@
                         android:layout_marginRight="7dp"
                         android:fontFamily="@font/hanmaumgodic_m"
                         android:hint="ID"
-                        android:singleLine="true"
-                        android:text="msno" />
+                        android:singleLine="true" />
 
                     <com.rengwuxian.materialedittext.MaterialEditText
                         android:id="@+id/login_edittext_pwd"
@@ -90,8 +89,7 @@
                         android:fontFamily="@font/hanmaumgodic_m"
                         android:hint="PW"
                         android:inputType="textPassword"
-                        android:singleLine="true"
-                        android:text="msnomsno" />
+                        android:singleLine="true" />
 
                 </LinearLayout>
 
