@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.seok.seok.wowsup.R;
-import com.seok.seok.wowsup.wowsup.NoticeActivity;
+import com.seok.seok.wowsup.dialog.NoticeDialog;
 import com.seok.seok.wowsup.wowsup.StoreActivity;
 import com.seok.seok.wowsup.wowsup.StoryWriteActivity;
 import com.seok.seok.wowsup.wowsup.SupPeopleInformationActivity;
@@ -89,7 +89,23 @@ public class ProfileFragment extends Fragment {
 
     @OnClick(R.id.frag_pf_ibtn_notice)
     void noticeFriend() {
-        startActivity(new Intent(getActivity().getApplication(), NoticeActivity.class));
+        ApiUtils.getProfileService().notice(GlobalWowSup.getInstance().getId()).enqueue(new Callback<ResponseProfile>() {
+            @Override
+            public void onResponse(Call<ResponseProfile> call, Response<ResponseProfile> response) {
+                if(response.isSuccessful()){
+                    ResponseProfile body = response.body();
+                    if(body.getState()==0){
+                        new NoticeDialog(getContext(), body.getCntNotice()).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseProfile> call, Throwable t) {
+
+            }
+        });
+        //startActivity(new Intent(getActivity().getApplication(), NoticeDialog.class));
     }
 
     @OnClick(R.id.frag_pf_img_profile)

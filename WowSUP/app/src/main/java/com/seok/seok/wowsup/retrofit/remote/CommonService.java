@@ -15,4 +15,8 @@ public interface CommonService {
     @GET("Common/applyFriend.php")
     Call<ResponseCommon> applyFriend(@Query("applyer") String applyer,
                                      @Query("applyed") String applyed);
+
+    @GET("Common/confirmFriend.php")
+    Call<ResponseCommon> confirmFriend(@Query("userID1") String userID1,
+                                       @Query("userID2") String userID2);
 }

@@ -1,6 +1,9 @@
 package com.seok.seok.wowsup.retrofit.remote;
 
+import com.seok.seok.wowsup.retrofit.model.ResponseFriend;
 import com.seok.seok.wowsup.retrofit.model.ResponseProfile;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -13,6 +16,9 @@ public interface ProfileService {
     @POST("Profile/profile.php")
     Call<ResponseProfile> profile(@Query("userID") String userID);
 
+    @POST("Profile/notice.php")
+    Call<ResponseProfile> notice(@Query("userID") String userID);
+
     @POST("Profile/updateProfile.php")
     Call<ResponseProfile> updateProfile(@Query("userID") String userID,
                                         @Query("userAge") int userAge,
@@ -21,4 +27,7 @@ public interface ProfileService {
                                         @Query("userSelfish") String userSelf,
                                         @Query("userBanner") int userBanner,
                                         @Query("userChange") int change);
+
+    @POST("Profile/noticeData.php")
+    Call<List<ResponseFriend>> noticeData(@Query("userID") String userID);
 }
