@@ -76,7 +76,7 @@ public class StoryFragment extends Fragment {
     }
 
     @OnClick(R.id.frag_st_btn_search)
-    void searchHash() {
+    void searchHash() { //해쉬태그 검색 관련 전체 데이터 검색관련 데이터 구조 생각해볼것
         option = true;
         if(edtSearchTag.getText().length() > 0) {
             cardViewData.clear();
