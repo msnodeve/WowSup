@@ -33,4 +33,6 @@ public class WelcomeActivity extends AppCompatActivity {
     @OnClick(R.id.welcome_btn_signup) void btnSignUp(){
         startActivity(new Intent(WelcomeActivity.this, RegisterActivity.class));
     }
+
+    //서버에서 어플 접속시 서버 점검 일 경우 코드 구현해 넣기
 }
